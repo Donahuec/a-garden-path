@@ -1,3 +1,8 @@
 node_modules/
 .cache/
 public
+src/notes/.obsidian/plugins/*/*
+!src/notes/.obsidian/plugins/
+!src/notes/.obsidian/plugins/*/data.json
+src/notes/.obsidian/appearance.json
+src/notes/.obsidian/workspace.json

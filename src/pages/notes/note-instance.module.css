@@ -1,0 +1,51 @@
+.article-head {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    "title graph"
+    "dates graph"
+    "metadata graph"
+    "tags graph";
+
+  .article-title {
+    grid-area: title;
+    padding-inline: var(--gap-large);
+  }
+  .article-dates {
+    grid-area: dates;
+  }
+  .article-metadata {
+    grid-area: metadata;
+  }
+  .article-tags {
+    grid-area: tags;
+    display: flex;
+    gap: var(--gap-small);
+  }
+  .article-graph {
+    grid-area: graph;
+  }
+}
+.article-content {
+  padding-inline: 64px;
+}
+.article-backlinks {
+  height: 300px;
+}
+.tag {
+  background-color: var(--accent-color);
+  padding-block: 0;
+  padding-inline: var(--gap-medium);
+  border-radius: 12px;
+}
+
+.metadata-item {
+  margin-inline: var(--gap-medium);
+  .metadata-title {
+    margin-inline-end: var(--gap-small);
+  }
+  .metadata-content {
+    color: color-mix(in srgb, var(--accent-color) 50%, white);
+    font-style: italic;
+  }
+}

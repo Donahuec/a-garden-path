@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap");
+:root {
+  @layer typography {
+    --default-font: "Roboto", sans-serif;
+    --monospace-font: "Roboto Mono", monospace;
+  }
+  @layer border {
+    --border-radius: 4px;
+
+    --border-width: 1px;
+    --border-width-thick: 2px;
+    --border-width-accent: 4px;
+
+    --border-line: var(--border-width) solid;
+    --border-thick: var(--border-width-thick) solid;
+    --border-line-accent: var(--border-width-accent) solid;
+  }
+
+  @layer spacing {
+    --gap-small: 4px;
+    --gap-medium: 8px;
+    --gap-large: 16px;
+
+    --spacing-vertical: var(--gap-medium);
+    --spacing-horizontal: var(--gap-large);
+    --spacing-default: var(--spacing-vertical) var(--spacing-horizontal);
+    --spacing-equal-large: var(--spacing-horizontal);
+    --spacing-equal-small: var(--spacing-vertical);
+  }
+
+  @layer colors {
+    --white: hsl(0, 0%, 100%);
+    --black: hsl(0, 0%, 0%);
+    --border-radius: 8px;
+    --background-color: hsl(180 10% 10%);
+    --surface-color: hsl(180 20% 95% / 7%);
+    --accent-color: hsl(180, 100%, 25%);
+    --on-surface: var(--white);
+  }
+}

@@ -1,0 +1,27 @@
+.page-title {
+  text-align: center;
+}
+.note-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: auto 1fr auto;
+  gap: 16pxrem;
+}
+.note-preview {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  padding: 16px;
+  border-radius: 4px;
+}
+.note-title {
+  text-decoration: none;
+  color: color-mix(in srgb, var(--accent-color) 80%, white);
+}
+.note-title-container {
+  text-align: center;
+  align-self: center;
+}
+.note-excerpt {
+  margin-block: 0;
+}
