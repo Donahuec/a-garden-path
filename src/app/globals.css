@@ -1,42 +1,101 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --fontBody: 1rem;
+  --fontWeight: 400;
+  --fontBold: 700;
+  --headerFontFamily: 'Vollkorn', serif;
+  --fontFamily: 'Montserrat', sans-serif;
+
+  /* Sizing */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 16px;
+  --s5: 32px;
+  --s4: 48px;
+  --s6: 64px;
+  --s7: 96px;
+  --s8: 128px;
+  --s9: 256px;
+
+  /* Border Radius */
+  --br1: 8px;
+  --br2: 16px;
+
+  --fruitSalad: hsl(141, 38%, 47%);
+  --marigold: hsl(40, 60%, 49%);
+  --pomegranate: hsl(4, 90%, 58%);
+
+  --darkShade: hsl(214, 29%, 14%);
+  --lightShade: hsl(330, 25%, 98%);
+  --primary: hsl(183, 100%, 25%);
+  --secondary: hsl(332, 47%, 48%);
+  --lightAccent: hsl(198, 39%, 65%);
+
+  --success: var(--fruitSalad);
+  --warning: var(--marigold);
+  --error: var(--pomegranate);
+
+  --background: var(--darkShade);
+  --bodyText: var(--lightShade);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--fontFamily);
+  font-size: var(--fontBody);
+  font-weight: var(--fontWeight);
+  font-style: normal;
+  font-optical-sizing: auto;
+  letter-spacing: 0px;
+  color: var(--bodyText);
+  background-color: var(--background);
+}
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.header {
+  font-family: var(--headerFontFamily);
 }
 
 a {
-  color: inherit;
+  color: var(--linkBaseColor, var(--lightAccent));
   text-decoration: none;
+  transition: all 250ms ease;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+a:hover,
+a:focus-visible {
+  color: var(--linkHoverColor, var(--lightShade));
+}
+a:focus-visible {
+  outline: 2px solid var(--linkFocusBorderColor, var(--lightAccent));
+  outline-offset: var(--s1);
+  border-radius: 2px;
+}
+a:active {
+  color: var(--linkActiveColor, var(--darkShade));
 }
