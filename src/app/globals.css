@@ -1,3 +1,11 @@
+/* 550px: 34.375rem — Mobile
+550-1100px: 68.75rem — Tablet
+1100-1500px: 93.75rem — Laptop */
+
+@custom-media --mobile (max-width: 34.375rem);
+@custom-media --tablet (max-width: 68.75rem);
+@custom-media --laptop (max-width: 93.75rem);
+
 :root {
   --fontBody: 1rem;
   --fontWeight: 400;
@@ -6,41 +14,59 @@
   --fontFamily: 'Montserrat', sans-serif;
 
   /* Sizing */
-  --s1: 4px;
-  --s2: 8px;
-  --s3: 16px;
-  --s5: 32px;
-  --s4: 48px;
-  --s6: 64px;
-  --s7: 96px;
-  --s8: 128px;
-  --s9: 256px;
+  --s1px: 4px;
+  --s1rem: 0.25rem;
+  --s2px: 8px;
+  --s2rem: 0.5rem;
+  --s3px: 16px;
+  --s3rem: 1rem;
+  --s4px: 24px;
+  --s4rem: 1.5rem;
+  --s5px: 32px;
+  --s5rem: 2rem;
+  --s6px: 48px;
+  --s6rem: 3rem;
+  --s7px: 64px;
+  --s7rem: 4px;
+  --s8px: 96px;
+  --s8rem: 6rem;
+  --s9px: 128px;
+  --s9rem: 8rem;
+  --s10px: 256px;
+  --s10rem: 16rem;
+  --spacingXSmallpx: var(--s2px);
+  --spacingXSmallrem: var(--s2rem);
+  --spacingSmallpx: var(--s3px);
+  --spacingSmallrem: var(--s3rem);
+  --spacingMediumpx: var(--s5px);
+  --spacingMediumrem: var(--s5rem);
+  --spacingLargepx: var(--s7px);
+  --spacingLargerem: var(--s7rem);
+  --spacingXLargepx: var(--s9px);
+  --spacingXLargerem: var(--s9rem);
 
   /* Border Radius */
-  --br1: 8px;
-  --br2: 16px;
-
-  --fruitSalad: hsl(141, 38%, 47%);
-  --marigold: hsl(40, 60%, 49%);
-  --pomegranate: hsl(4, 90%, 58%);
-
-  --darkShade: hsl(214, 29%, 14%);
-  --lightShade: hsl(330, 25%, 98%);
-  --primary: hsl(183, 100%, 25%);
-  --secondary: hsl(332, 47%, 48%);
-  --lightAccent: hsl(198, 39%, 65%);
-
+  --brSmall: var(--s1px);
+  --brMedium: var(--s2px);
+  --brLarge: var(--s3px);
+  --fruitSalad: hsl(141deg 38% 47%);
+  --marigold: hsl(40deg 60% 49%);
+  --pomegranate: hsl(4deg 90% 58%);
+  --darkShade: hsl(214deg 29% 14%);
+  --lightShade: hsl(330deg 25% 98%);
+  --primary: hsl(183deg 100% 25%);
+  --secondary: hsl(332deg 47% 48%);
+  --lightAccent: hsl(198deg 39% 65%);
   --success: var(--fruitSalad);
   --warning: var(--marigold);
   --error: var(--pomegranate);
-
   --background: var(--darkShade);
   --bodyText: var(--lightShade);
 }
 
 *,
-*:before,
-*:after {
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -57,7 +83,7 @@ body {
   font-weight: var(--fontWeight);
   font-style: normal;
   font-optical-sizing: auto;
-  letter-spacing: 0px;
+  letter-spacing: 0;
   color: var(--bodyText);
   background-color: var(--background);
 }
@@ -91,11 +117,13 @@ a:hover,
 a:focus-visible {
   color: var(--linkHoverColor, var(--lightShade));
 }
+
 a:focus-visible {
   outline: 2px solid var(--linkFocusBorderColor, var(--lightAccent));
   outline-offset: var(--s1);
   border-radius: 2px;
 }
+
 a:active {
   color: var(--linkActiveColor, var(--darkShade));
 }

@@ -1,0 +1,25 @@
+{
+  "plugins": [
+    "postcss-flexbugs-fixes",
+    [
+      "postcss-preset-env",
+      {
+        "autoprefixer": {
+          "flexbox": "no-2009"
+        },
+        "stage": 2,
+        "features": {
+          "custom-properties": false
+        },
+        "browsers": ["> 0.2% and not dead"]
+      }
+    ],
+    [
+      "@csstools/postcss-global-data",
+      {
+        "files": ["src/app/globals.css"]
+      }
+    ],
+    "postcss-custom-media"
+  ]
+}

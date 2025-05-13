@@ -1,5 +1,22 @@
 .main {
   width: clamp(320px, 100vw - 2rem, 800px);
   margin-inline: auto;
-  margin-block: var(--s6);
+  margin-block: var(--spacingLargepx);
+  border: 1px solid var(--lightShade);
+}
+
+@media (--tablet) {
+  .main {
+    width: revert;
+    margin-inline: var(--spacingMediumpx);
+    margin-block: var(--spacingMediumpx);
+  }
+}
+
+@media (--mobile) {
+  .main {
+    width: 100vw;
+    margin-inline: 0;
+    margin-block: var(--spacingSmallpx);
+  }
 }
