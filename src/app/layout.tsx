@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
-import './globals.css';
+import '@/app/_shared/styles/colors.css';
+import '@/app/_shared/styles/variables.css';
+import '@/app/_shared/styles/globals.css';
 
 import { Montserrat, Vollkorn } from 'next/font/google';
 

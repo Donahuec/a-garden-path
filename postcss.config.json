@@ -17,7 +17,10 @@
     [
       "@csstools/postcss-global-data",
       {
-        "files": ["src/app/globals.css"]
+        "files": [
+          "src/app/_shared/styles/variables.css",
+          "src/app/_shared/styles/colors.css"
+        ]
       }
     ],
     "postcss-custom-media"

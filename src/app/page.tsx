@@ -13,19 +13,19 @@ export default function Home() {
             style={{
               width: '1rem',
               height: '2rem',
-              backgroundColor: 'var(--lightAccent)',
+              backgroundColor: 'var(--light-accent)',
             }}></div>
           <div
             style={{
               width: '1rem',
               height: '1.5rem',
-              backgroundColor: 'var(--lightAccent)',
+              backgroundColor: 'var(--light-accent)',
             }}></div>
           <div
             style={{
               width: '1rem',
               height: '3.5rem',
-              backgroundColor: 'var(--lightAccent)',
+              backgroundColor: 'var(--light-accent)',
             }}></div>
           <div
             style={{

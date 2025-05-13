@@ -1,0 +1,82 @@
+:root {
+  /* Example Colors */
+  --success: hsl(141deg 38% 47%);
+  --warning: hsl(40deg 60% 49%);
+  --error: hsl(4deg 90% 58%);
+  --dark-shade: hsl(214deg 29% 14%);
+  --light-shade: hsl(330deg 25% 98%);
+  --primary: hsl(183deg 100% 25%);
+  --secondary: hsl(332deg 47% 48%);
+  --light-accent: hsl(198deg 39% 65%);
+
+  /* Base Colors */
+
+  /* Parts */
+  --dark-shade-hue: 214deg;
+  --dark-shade-saturation: 29%;
+  --dark-shade-lightness: 14%;
+
+  --light-shade-hue: 330deg;
+  --light-shade-saturation: 25%;
+  --light-shade-lightness: 98%;
+
+  --primary-hue: 183deg;
+  --primary-saturation: 100%;
+  --primary-lightness: 25%;
+
+  --secondary-hue: 332deg;
+  --secondary-saturation: 47%;
+  --secondary-lightness: 48%;
+
+  --light-accent-hue: 198deg;
+  --light-accent-saturation: 39%;
+  --light-accent-lightness: 65%;
+
+  --dark-shade-hsl: var(--dark-shade-hue) var(--dark-shade-saturation)
+    var(--dark-shade-lightness);
+  --light-shade-hsl: var(--light-shade-hue) var(--light-shade-saturation)
+    var(--light-shade-lightness);
+  --primary-hsl: var(--primary-hue) var(--primary-saturation)
+    var(--primary-lightness);
+  --secondary-hsl: var(--secondary-hue) var(--secondary-saturation)
+    var(--secondary-lightness);
+  --light-accent-hsl: var(--light-accent-hue) var(--light-accent-saturation)
+    var(--light-accent-lightness);
+
+  /* Constructed */
+  --dark-shade: hsl(var(--dark-shade-hsl));
+  --light-shade: hsl(var(--light-shade-hsl));
+  --primary: hsl(var(--primary-hsl));
+  --secondary: hsl(var(--secondary-hsl));
+  --light-accent: hsl(var(--light-accent-hsl));
+
+  /* Semantic Colors */
+
+  /* Parts */
+  --success-hue: 141deg;
+  --success-saturation: 38%;
+  --success-lightness: 47%;
+
+  --warning-hue: 40deg;
+  --warning-saturation: 60%;
+  --warning-lightness: 49%;
+
+  --error-hue: 4deg;
+  --error-saturation: 90%;
+  --error-lightness: 58%;
+
+  --success-hsl: var(--success-hue) var(--success-saturation)
+    var(--success-lightness);
+  --warning-hsl: var(--warning-hue) var(--warning-saturation)
+    var(--warning-lightness);
+  --error-hsl: var(--error-hue) var(--error-saturation) var(--error-lightness);
+
+  /* constructed */
+  --success: hsl(var(--success-hsl));
+  --warning: hsl(var(--warning-hsl));
+  --error: hsl(var(--error-hsl));
+
+  /* Layout Colors */
+  --background: var(--dark-shade);
+  --body-text: var(--light-shade);
+}
