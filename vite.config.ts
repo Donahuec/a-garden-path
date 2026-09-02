@@ -6,6 +6,11 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import autoprefixer from 'autoprefixer';
+import postcssPresetEnv from 'postcss-preset-env';
+import postCssGlobalData from '@csstools/postcss-global-data';
+
 const dirname =
 	typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
@@ -21,9 +26,24 @@ export default defineConfig({
 			// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
 			// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
 			// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-			adapter: adapter()
+			adapter: adapter(),
+			preprocess: [vitePreprocess()]
 		})
 	],
+	css: {
+		postcss: {
+			plugins: [
+				postCssGlobalData({
+					files: ['src/lib/styles/media-queries.css']
+				}),
+				postcssPresetEnv({
+					stage: 2,
+					features: { 'custom-media-queries': true }
+				}),
+				autoprefixer()
+			]
+		}
+	},
 	test: {
 		expect: {
 			requireAssertions: true

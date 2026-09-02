@@ -1,6 +1,7 @@
 <script lang="ts">
 	import favicon from '$lib/assets/favicon.svg';
 	import { onNavigate } from '$app/navigation';
+	import '$lib/styles/media-queries.css';
 	import '$lib/styles/resets.css';
 	import '$lib/styles/utilities.css';
 	import '$lib/styles/colors.css';
