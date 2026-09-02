@@ -1,0 +1,57 @@
+/* 550px: 34.375rem — Mobile
+550-1100px: 68.75rem — Tablet
+1100-1500px: 93.75rem — Laptop */
+@custom-media --mobile (max-width: 34.375rem);
+@custom-media --tablet (max-width: 68.75rem);
+@custom-media --laptop (max-width: 93.75rem);
+
+:root {
+	--font-body: 1.125rem;
+	--font-weight: 400;
+	--font-bold: 700;
+	--header-font-family: 'Bodoni Moda', serif;
+	--font-family: 'Open Sans', sans-serif;
+	--flourish-font-family: "Send Flowers", cursive;
+	--font-mono: "Sono", monospace;
+
+	/* Sizing */
+	--s-1-px: 4px;
+	--s-1-rem: 0.25rem;
+	--s-2-px: 8px;
+	--s-2-rem: 0.5rem;
+	--s-3-px: 16px;
+	--s-3-rem: 1rem;
+	--s-4-px: 24px;
+	--s-4-rem: 1.5rem;
+	--s-5-px: 32px;
+	--s-5-rem: 2rem;
+	--s-6-px: 48px;
+	--s-6-rem: 3rem;
+	--s-7-px: 64px;
+	--s-7-rem: 4rem;
+	--s-8-px: 96px;
+	--s-8-rem: 6rem;
+	--s-9-px: 128px;
+	--s-9-rem: 8rem;
+	--s-10-px: 256px;
+	--s-10-rem: 16rem;
+
+	/* Named sizing */
+	--s-xsmall-px: var(--s-2-px);
+	--s-xsmall-rem: var(--s-2-rem);
+	--s-small-px: var(--s-3-px);
+	--s-small-rem: var(--s-3-rem);
+	--s-medium-px: var(--s-5-px);
+	--s-medium-rem: var(--s-5-rem);
+	--s-large-px: var(--s-7-px);
+	--s-large-rem: var(--s-7-rem);
+	--s-xlarge-px: var(--s-9-px);
+	--s-xlarge-rem: var(--s-9-rem);
+	--s-xxlarge-px: var(--s-10-px);
+	--s-xxlarge-rem: var(--s-10-rem);
+
+	/* Border Radius */
+	--br-small: var(--s-1-px);
+	--br-medium: var(--s-2-px);
+	--br-large: var(--s-3-px);
+}

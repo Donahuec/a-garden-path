@@ -1,8 +1,8 @@
 {
-  "extends": ["stylelint-config-standard"],
-  "rules": {
-    "block-no-empty": true,
-    "declaration-block-no-duplicate-custom-properties": null,
-    "custom-property-empty-line-before": null
-  }
+	"extends": ["stylelint-config-standard"],
+	"rules": {
+		"block-no-empty": true,
+		"declaration-block-no-duplicate-custom-properties": null,
+		"custom-property-empty-line-before": null
+	}
 }
