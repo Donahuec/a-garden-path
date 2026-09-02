@@ -1,8 +1,5 @@
 :root {
 	/* Example Colors */
-	--success: hsl(141deg 38% 47%);
-	--warning: hsl(40deg 60% 49%);
-	--error: hsl(4deg 90% 58%);
 	--dark-shade: hsl(199deg, 100%, 8%);
 	--light-shade: hsl(200deg, 47%, 66%);
 	--primary: hsl(191deg, 100%, 18%);
@@ -46,30 +43,6 @@
 	--primary: hsl(var(--primary-hsl));
 	--secondary: hsl(var(--secondary-hsl));
 	--light-accent: hsl(var(--light-accent-hsl));
-
-	/* Semantic Colors */
-
-	/* Parts */
-	--success-hue: 141deg;
-	--success-saturation: 38%;
-	--success-lightness: 47%;
-
-	--warning-hue: 40deg;
-	--warning-saturation: 60%;
-	--warning-lightness: 49%;
-
-	--error-hue: 4deg;
-	--error-saturation: 90%;
-	--error-lightness: 58%;
-
-	--success-hsl: var(--success-hue) var(--success-saturation) var(--success-lightness);
-	--warning-hsl: var(--warning-hue) var(--warning-saturation) var(--warning-lightness);
-	--error-hsl: var(--error-hue) var(--error-saturation) var(--error-lightness);
-
-	/* constructed */
-	--success: hsl(var(--success-hsl));
-	--warning: hsl(var(--warning-hsl));
-	--error: hsl(var(--error-hsl));
 
 	/* Layout Colors */
 	--background: var(--dark-shade);

@@ -1,22 +1,8 @@
-/* 550px: 34.375rem — Mobile
-550-1100px: 68.75rem — Tablet
-1100-1500px: 93.75rem — Laptop */
-@custom-media --mobile (max-width: 34.375rem);
-@custom-media --tablet (max-width: 68.75rem);
-@custom-media --laptop (max-width: 93.75rem);
-
 :root {
-	--font-body: 1.125rem;
-	--font-weight: 400;
-	--font-bold: 700;
-	--header-font-family: 'Bodoni Moda', serif;
-	--font-family: 'Open Sans', sans-serif;
-	--flourish-font-family: "Send Flowers", cursive;
-	--font-mono: "Sono", monospace;
-
 	/* Sizing */
 	--s-1-px: 4px;
 	--s-1-rem: 0.25rem;
+
 	--s-2-px: 8px;
 	--s-2-rem: 0.5rem;
 	--s-3-px: 16px;

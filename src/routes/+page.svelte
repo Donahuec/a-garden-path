@@ -120,7 +120,7 @@
 
 	.flourish {
 		color: var(--secondary);
-		font-family: var(--flourish-font-family);
+		font-family: var(--font-family-flourish);
 		font-weight: 400;
 		font-size: 1.3em;
 	}
@@ -128,7 +128,7 @@
 	.digital {
 		font-weight: 400;
 		color: var(--light-accent);
-		font-family: var(--font-mono);
+		font-family: var(--font-family-mono);
 		white-space: nowrap;
 	}
 
@@ -156,7 +156,7 @@
 		text-decoration: none;
 		color: var(--dark-shade);
 		text-transform: uppercase;
-		font-family: var(--header-font-family);
+		font-family: var(--font-family-header);
 		font-weight: 600;
 		transition: transform 250ms;
 		font-size: 1.5rem;
