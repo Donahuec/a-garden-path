@@ -1,4 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Send+Flowers&family=Sono:wght,MONO@200..800,1&display=swap');
+@font-face {
+  font-family: Send Flowers;
+  src: url('/assets/fonts/Send_Flowers/SendFlowers-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sono';
+  src: url('/assets/fonts/Sono/Sono-VariableFont_MONO,wght.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 200 800;
+  font-variation-settings: 'MONO' 1;
+}
+
+@font-face {
+  font-family: 'Bodoni Moda';
+  src: url('/assets/fonts/Bodoni_Moda/BodoniModa-VariableFont_opsz,wght.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 400 900;
+}
+@font-face {
+  font-family: 'Bodoni Moda Italic';
+  src: url('/assets/fonts/Bodoni_Moda/BodoniModa-Italic-VariableFont_opsz,wght.ttf')
+    format('truetype');
+  font-display: swap;
+  font-weight: 400 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 300 800;
+}
+
+@font-face {
+  font-family: 'Open Sans Italic';
+  src: url('/assets/fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 300 800;
+  font-style: italic;
+}
 
 :root {
   --font-size-body: 1.125rem;
@@ -7,7 +50,9 @@
   --font-bold: 700;
 
   --font-family-header: 'Bodoni Moda', serif;
+  --font-family-header-italic: 'Bodoni Moda Italic', serif;
   --font-family-body: 'Open Sans', sans-serif;
+  --font-family-body-italic: 'Open Sans Italic', sans-serif;
   --font-family-flourish: 'Send Flowers', cursive;
   --font-family-mono: 'Sono', monospace;
 }
@@ -17,7 +62,6 @@
   font-optical-sizing: auto;
   font-weight: var(--font-weight, 400);
   font-style: normal;
-  font-variation-settings: 'MONO' 1;
 }
 
 .font-header {
@@ -25,6 +69,13 @@
   font-optical-sizing: auto;
   font-weight: var(--font-weight, 400);
   font-style: normal;
+}
+
+.font-header-italic {
+  font-family: var(--font-family-header-italic);
+  font-optical-sizing: auto;
+  font-weight: var(--font-weight, 400);
+  font-style: italic;
 }
 
 .font-flourish {
@@ -38,6 +89,14 @@
   font-optical-sizing: auto;
   font-weight: var(--font-weight, 400);
   font-style: normal;
+  font-variation-settings: 'wdth' 100;
+}
+
+.font-body-italic {
+  font-family: var(--font-family-body-italic);
+  font-optical-sizing: auto;
+  font-weight: var(--font-weight, 400);
+  font-style: italic;
   font-variation-settings: 'wdth' 100;
 }
 

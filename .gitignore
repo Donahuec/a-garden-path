@@ -33,3 +33,6 @@ old/*
 **/routes/demo
 **/stories
 **/vitest-examples
+
+# hiding static fonts since they are not being used (right now)
+static/assets/fonts/*/static
