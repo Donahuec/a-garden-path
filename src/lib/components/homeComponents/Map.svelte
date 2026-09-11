@@ -1,8 +1,9 @@
 <script>
   import '$lib/styles/media-queries.css';
-  import flowers from '$lib/assets/img/home/flowers.jpeg';
-  import flowerBasin from '$lib/assets/img/home/flowerBasin.jpeg';
-  import flowersRight from '$lib/assets/img/home/flowersRight.jpeg';
+  import flowers from '$lib/assets/img/home/flowers.webp';
+  import flowerBasin from '$lib/assets/img/home/flowerBasin.webp';
+  import flowersRight from '$lib/assets/img/home/flowersRight.webp';
+  import homeImageMeta from '$lib/assets/img/home/meta.json';
 </script>
 
 <section class="map" id="map">
@@ -26,13 +27,13 @@
   </div>
   <div class="photos fade-in-on-scroll">
     <div class="photo-wrapper">
-      <img class="photo" src={flowerBasin} alt="Pink flowers in a stone basin of water" />
+      <img class="photo" src={flowerBasin} alt={homeImageMeta.images.flowerBasin.alt} />
     </div>
     <div class="photo-wrapper">
-      <img class="photo" src={flowers} alt="Cherry blossoms in front of a Japanese temple" />
+      <img class="photo" src={flowers} alt={homeImageMeta.images.flowers.alt} />
     </div>
     <div class="photo-wrapper">
-      <img class="photo" src={flowersRight} alt="Bell shaped pink flowers" />
+      <img class="photo" src={flowersRight} alt={homeImageMeta.images.flowersRight.alt} />
     </div>
   </div>
 </section>

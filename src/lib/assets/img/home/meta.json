@@ -2,20 +2,38 @@
   "images": {
     "flowerBasin": {
       "fileName": "flowerBasin",
-      "formats": "jpeg",
-      "alt": "Pink flowers in a stone basin of water",
+      "formats": ["webp", "jpeg"],
+      "alt": "Pink flowers floating in a stone basin of water.",
       "title": "Flowers in Temple Basin",
-      "description": "Pink flowers floating in a stone basin. This was taken at a temple in Japan.",
+      "description": "Pink flowers floating in a stone basin of water. This was taken at a temple in Japan.",
       "location": "Japan",
       "date": "2026"
     },
     "flowers": {
       "fileName": "flowers",
-      "formats": "jpeg",
-      "alt": "Cherry blossoms in front of a Japanese temple",
-      "title": "Flowers in Front of a Temple",
+      "formats": ["webp", "jpeg"],
+      "alt": "Bright pink and white cherry blossoms in front of a Japanese temple, framed against a clear blue sky. ",
+      "title": "Cherry Blossoms",
       "description": "A picture of cherry blossoms starting to bloom, in front of a temple in Japan.",
       "location": "Japan",
+      "date": "2026"
+    },
+    "flowersRight": {
+      "fileName": "flowersRight",
+      "formats": ["webp", "jpeg"],
+      "alt": "Pink bell shaped flowers in  front of a slightly blurred background and blue sky. In the background there is a Japanese temple.",
+      "title": "Bell Shaped Flowers",
+      "description": "Pink bell shaped flowers in  front of a slightly blurred background and blue sky. In the background there is a Japanese temple.",
+      "location": "Japan",
+      "date": "2026"
+    },
+    "homeCover": {
+      "fileName": "homeCover",
+      "formats": ["webp", "jpeg"],
+      "alt": "A stone Japanese Lion Dog (Komainu) statue with it's front paws balanced on a sphere. The setting sun casts sharp golden light on it. The statue is framed against pine trees, the rising hills of Miyajima, and the blue sky. A temple can be seen in the distance surrounded by cherry blossoms.",
+      "title": "Komainu Sunset, Miyajima",
+      "description": "A stone Japanese Lion Dog (Komainu) statue with it's front paws balanced on a sphere. The setting sun casts sharp golden light on it. The statue is framed against pine trees, the rising hills of Miyajima, and the blue sky. A temple can be seen in the distance surrounded by cherry blossoms.",
+      "location": "Miyajima Japan",
       "date": "2026"
     }
   }
