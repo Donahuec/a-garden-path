@@ -1,4 +1,3 @@
-/// <reference types="vitest/config" />
 import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import { sveltekit } from '@sveltejs/kit/vite';
@@ -28,11 +27,13 @@ export default defineConfig({
         // these options are set automatically — see below
         pages: 'build',
         assets: 'build',
-        fallback: undefined,
         precompress: false,
         strict: true
       }),
-      preprocess: [vitePreprocess()]
+      preprocess: [vitePreprocess()],
+      paths: {
+        base: process.argv.includes('dev') ? '' : `/a-garden-path`
+      }
     })
   ],
   css: {
@@ -49,7 +50,6 @@ export default defineConfig({
       ]
     }
   },
-  base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
   test: {
     expect: {
       requireAssertions: true

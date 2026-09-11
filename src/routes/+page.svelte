@@ -1,6 +1,6 @@
 <script>
-  import Hero from './homeComponents/Hero.svelte';
-  import Map from './homeComponents/Map.svelte';
+  import Hero from '$lib/components/homeComponents/Hero.svelte';
+  import Map from '$lib/components/homeComponents/Map.svelte';
   import { resolve } from '$app/paths';
   let targetElement;
 
