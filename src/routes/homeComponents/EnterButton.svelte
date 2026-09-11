@@ -24,13 +24,31 @@
     }
   }
 
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   .hero-action {
     display: grid;
     isolation: isolate;
     place-content: center;
     margin-block-start: var(--s-large-px);
-    animation: fade-slide 750ms ease-out backwards;
-    animation-delay: 2000ms;
+    animation: fade-in 750ms ease backwards;
+    animation-delay: var(--animation-delay, 2000ms);
+    @media (prefers-reduced-motion: no-preference) {
+      animation: fade-slide 750ms ease-out backwards;
+      animation-delay: var(--animation-delay, 2000ms);
+    }
+  }
+
+  .enter-btn:focus-visible {
+    outline: 2px dashed var(--secondary);
+    outline-offset: 4px;
   }
 
   .enter-btn-bg,
@@ -38,13 +56,20 @@
     grid-area: 1 / 1;
     height: var(--s-xlarge-rem);
     width: var(--s-xlarge-rem);
+    border-radius: 50%;
   }
 
   .enter-btn-bg,
   .enter-btn::before {
     border-radius: 50%;
     background-color: var(--light-shade);
-    transition: transform 250ms ease-in-out;
+    transition:
+      transform 250ms ease-in-out,
+      opacity 250ms ease-in-out;
+  }
+
+  .enter-btn:active::before {
+    opacity: 70%;
   }
 
   .enter-btn {

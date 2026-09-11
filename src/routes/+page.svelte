@@ -18,7 +18,7 @@
   <div id="scroll-target" bind:this={targetElement}>
     <Map />
   </div>
-  <a class="home" href={resolve('/')} data-sveltekit-reload>Refresh</a>
+  <a class="refresh font-flourish" href={resolve('/')} data-sveltekit-reload>Refresh</a>
 </main>
 
 <style>
@@ -27,9 +27,9 @@
     margin-block-end: 800px;
   }
 
-  .home {
+  .refresh {
     position: fixed;
-    left: 0;
-    bottom: 0;
+    left: 10px;
+    bottom: 10px;
   }
 </style>

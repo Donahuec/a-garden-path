@@ -21,7 +21,7 @@
         <div class="square" style="--square-color:var(--secondary)"></div>
       </div>
       <div class="enter-container">
-        <EnterButton {action} />
+        <EnterButton {action} --animation-delay="1700ms" />
       </div>
     </div>
   </div>
@@ -54,7 +54,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('$lib/assets/img/homeCover.jpeg');
+    background-image: url('$lib/assets/img/home/homeCover.jpeg');
     background-size: cover;
     background-position: center;
     background-color: var(--primary);
@@ -123,12 +123,26 @@
     }
   }
 
+  .intro {
+    display: inline-block;
+  }
+
   .flourish {
-    color: var(--secondary);
+    color: var(--secondary-text);
     font-size: 1.3em;
+    line-height: 1;
+    /* This font has a large descender on capital letters
+      So we do some pixel pushing to make it look aligned
+      with the rest of the header
+     */
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -0.225em;
   }
 
   .digital {
+    /* TODO FIGURE OUT COLOR ALPHA VAR */
+    --color-alpha: 0.5;
     color: var(--light-accent);
     white-space: nowrap;
   }
@@ -145,14 +159,14 @@
   }
 
   .found {
-    animation-delay: 1500ms;
+    animation-delay: 1250ms;
   }
 
   .digital {
-    animation-delay: 1550ms;
+    animation-delay: 1300ms;
   }
 
   .color-squares {
-    animation-delay: 1600ms;
+    animation-delay: 1400ms;
   }
 </style>
