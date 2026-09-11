@@ -1,0 +1,65 @@
+:root {
+  /* Example Colors */
+  --dark-shade: hsl(199deg, 100%, 8%);
+  --light-shade: hsl(200deg, 47%, 66%);
+  --primary: hsl(191deg, 100%, 18%);
+  --secondary: hsl(332deg 47% 48%);
+  --secondary: hsl(332, 70%, 62%);
+  --light-accent: hsl(188deg, 86%, 53%);
+
+  /* Base Colors */
+
+  /* Parts */
+  --dark-shade-hue: 199deg;
+  --dark-shade-saturation: 100%;
+  --dark-shade-lightness: 8%;
+
+  --light-shade-hue: 200deg;
+  --light-shade-saturation: 47%;
+  --light-shade-lightness: 66%;
+
+  --primary-hue: 191deg;
+  --primary-saturation: 100%;
+  --primary-lightness: 18%;
+  --primary-text-saturation: 88%;
+  --primary-text-lightness: 47%;
+
+  --secondary-hue: 332deg;
+  --secondary-saturation: 47%;
+  --secondary-lightness: 48%;
+  --secondary-text-saturation: 70%;
+  --secondary-text-lightness: 63%;
+
+  --light-accent-hue: 188deg;
+  --light-accent-saturation: 86%;
+  --light-accent-lightness: 53%;
+
+  --dark-shade-hsl: var(--dark-shade-hue) var(--dark-shade-saturation) var(--dark-shade-lightness);
+
+  --light-shade-hsl: var(--light-shade-hue) var(--light-shade-saturation)
+    var(--light-shade-lightness);
+
+  --primary-hsl: var(--primary-hue) var(--primary-saturation) var(--primary-lightness);
+  --primary-text-hsl: var(--primary-hue) var(--primary-text-saturation)
+    var(--primary-text-lightness);
+
+  --secondary-hsl: var(--secondary-hue) var(--secondary-saturation) var(--secondary-lightness);
+  --secondary-text-hsl: var(--secondary-hue) var(--secondary-text-saturation)
+    var(--secondary-text-lightness);
+
+  --light-accent-hsl: var(--light-accent-hue) var(--light-accent-saturation)
+    var(--light-accent-lightness);
+
+  /* Constructed */
+  --dark-shade: hsl(var(--dark-shade-hsl) / var(--color-alpha, 1));
+  --light-shade: hsl(var(--light-shade-hsl) / var(--color-alpha, 1));
+  --primary: hsl(var(--primary-hsl) / var(--color-alpha, 1));
+  --primary-text: hsl(var(--primary-text-hsl) / var(--color-alpha, 1));
+  --secondary: hsl(var(--secondary-hsl) / var(--color-alpha, 1));
+  --secondary-text: hsl(var(--secondary-text-hsl) / var(--color-alpha, 1));
+  --light-accent: hsl(var(--light-accent-hsl) / var(--color-alpha, 1));
+
+  /* Layout Colors */
+  --background: var(--dark-shade);
+  --body-text: var(--light-shade);
+}

@@ -1,0 +1,147 @@
+@font-face {
+  font-family: Send Flowers;
+  src: url('/assets/fonts/Send_Flowers/SendFlowers-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Sono';
+  src: url('/assets/fonts/Sono/Sono-VariableFont_MONO,wght.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 200 800;
+  font-variation-settings: 'MONO' 1;
+}
+
+@font-face {
+  font-family: 'Bodoni Moda';
+  src: url('/assets/fonts/Bodoni_Moda/BodoniModa-VariableFont_opsz,wght.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 400 900;
+}
+@font-face {
+  font-family: 'Bodoni Moda Italic';
+  src: url('/assets/fonts/Bodoni_Moda/BodoniModa-Italic-VariableFont_opsz,wght.ttf')
+    format('truetype');
+  font-display: swap;
+  font-weight: 400 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 300 800;
+}
+
+@font-face {
+  font-family: 'Open Sans Italic';
+  src: url('/assets/fonts/Open_Sans/OpenSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-display: swap;
+  font-weight: 300 800;
+  font-style: italic;
+}
+
+:root {
+  --font-size-body: 1.125rem;
+
+  --font-weight: 400;
+  --font-bold: 700;
+
+  --font-family-header: 'Bodoni Moda', serif;
+  --font-family-header-italic: 'Bodoni Moda Italic', serif;
+  --font-family-body: 'Open Sans', sans-serif;
+  --font-family-body-italic: 'Open Sans Italic', sans-serif;
+  --font-family-flourish: 'Send Flowers', cursive;
+  --font-family-mono: 'Sono', monospace;
+}
+
+.font-mono {
+  font-family: var(--font-family-mono);
+  font-optical-sizing: auto;
+  font-weight: var(--font-weight, 400);
+  font-style: normal;
+}
+
+.font-header {
+  font-family: var(--font-family-header);
+  font-optical-sizing: auto;
+  font-weight: var(--font-weight, 400);
+  font-style: normal;
+}
+
+.font-header-italic {
+  font-family: var(--font-family-header-italic);
+  font-optical-sizing: auto;
+  font-weight: var(--font-weight, 400);
+  font-style: italic;
+}
+
+.font-flourish {
+  font-family: var(--font-family-flourish);
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-body {
+  font-family: var(--font-family-body);
+  font-optical-sizing: auto;
+  font-weight: var(--font-weight, 400);
+  font-style: normal;
+  font-variation-settings: 'wdth' 100;
+}
+
+.font-body-italic {
+  font-family: var(--font-family-body-italic);
+  font-optical-sizing: auto;
+  font-weight: var(--font-weight, 400);
+  font-style: italic;
+  font-variation-settings: 'wdth' 100;
+}
+
+body {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-font-weight);
+  font-style: normal;
+  font-optical-sizing: auto;
+  font-variation-settings: 'wdth' 100;
+  letter-spacing: 0;
+  color: var(--body-text);
+  line-height: 1.75;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.header {
+  font-family: var(--font-family-header);
+  font-optical-sizing: auto;
+  font-weight: var(--weight, 400);
+  font-style: normal;
+}
+
+a {
+  color: var(--link-base-bolor, var(--light-accent));
+  text-decoration: none;
+  transition: color 250ms ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--link-hover-color, var(--light-shade));
+}
+
+a:focus-visible {
+  outline: 2px solid var(--link-focus-border-color, var(--light-accent));
+  outline-offset: var(--s1);
+  border-radius: 2px;
+}
+
+a:active {
+  color: var(--link-active-color, var(--dark-shade));
+}

@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	display: block;
+	width: 100%;
+}
+
+svg {
+	display: block;
+}
+
+button {
+	border: none;
+	background-color: transparent;
+}

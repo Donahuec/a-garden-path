@@ -1,8 +1,38 @@
-node_modules/
-.cache/
-public
-src/notes/.obsidian/plugins/*/*
-!src/notes/.obsidian/plugins/
-!src/notes/.obsidian/plugins/*/data.json
-src/notes/.obsidian/appearance.json
-src/notes/.obsidian/workspace.json
+node_modules
+
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+# Playwright
+test-results
+
+*storybook.log
+storybook-static
+
+old/*
+
+#temporarily hide scaffolding demo objects
+**/routes/demo
+**/stories
+**/vitest-examples
+
+# hiding static fonts since they are not being used (right now)
+static/assets/fonts/*/static

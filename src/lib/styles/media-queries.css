@@ -1,0 +1,7 @@
+/* 640px, 768, 1024 */
+@custom-media --media-min-small (min-width: 40rem);
+@custom-media --media-max-small (max-width: 40rem);
+@custom-media --media-min-medium (min-width: 48rem);
+@custom-media --media-max-medium (max-width: 48rem);
+@custom-media --media-min-large (min-width: 64rem);
+@custom-media --media-max-large (max-width: 64rem);
