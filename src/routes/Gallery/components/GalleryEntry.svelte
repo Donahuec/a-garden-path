@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fly, fade } from 'svelte/transition';
+  import { fly } from 'svelte/transition';
   import { trapFocus } from '$lib/attachments/trapFocus.svelte.ts';
   let {
     module,
@@ -17,13 +17,15 @@
 
   let open = $derived(index == displayIndex);
 
-  let fadeBackdrop = $state(0);
-
   const right = -1;
   const left = 1;
   const vertical = 0;
 
   let direction = $state(0);
+
+  let flyY = $derived(direction === vertical || displayIndex === -1 ? 300 : 0);
+  let flyInX = $derived(displayIndex === -1 ? 0 : 500 * direction);
+  let flyOutX = $derived(displayIndex === -1 ? 0 : -500 * direction);
 
   function next() {
     direction = right;
@@ -37,12 +39,14 @@
 
   $effect(() => {
     if (index != displayIndex) {
-      if (index === 0 && displayIndex === count - 1) {
-        direction = left;
-      } else if (index === count - 1 && displayIndex === 0) {
+      if (displayIndex == -1) {
+        direction = vertical;
+      } else if (index === 0 && displayIndex === count - 1) {
         direction = right;
+      } else if (index === count - 1 && displayIndex === 0) {
+        direction = left;
       } else {
-        direction = index > displayIndex ? left : right;
+        direction = index > displayIndex ? right : left;
       }
     }
   });
@@ -56,32 +60,15 @@
 </button>
 
 {#if open}
-  <div
-    class="modal-container"
-    role="presentation"
-    onkeydown={(e) => {
-      if (e.key === 'Escape') {
-        displayIndex = -1;
-      }
-    }}
-  >
-    <div
-      class="modal-backdrop"
-      onclick={(event) => {
-        if (event.target === event.currentTarget) {
-          displayIndex = -1;
-        }
-      }}
-      aria-hidden="true"
-      transition:fade={{ duration: 300 }}
-    ></div>
+  <div class="modal-container">
     <article
       class="modal"
+      role="presentation"
       {@attach trapFocus}
-      in:fly|global={{ x: 300 * direction, duration: 1000 }}
-      out:fly|global={{ x: -300 * direction, duration: 1000 }}
+      in:fly|global={{ x: flyInX, y: flyY, duration: 500 }}
+      out:fly|global={{ x: flyOutX, y: flyY, duration: 500 }}
     >
-      <h2 class="primary-image-title font-header">{title} ({index})</h2>
+      <h2 class="primary-image-title font-header">{title}</h2>
       <figure class="primary-image-figure">
         <enhanced:img class="primary-image" src={module.default} {alt} />
         <figcaption class="primary-image-caption">{description}</figcaption>
@@ -181,15 +168,7 @@
     left: 0;
     right: 0;
     z-index: 100;
-  }
-
-  .modal-backdrop {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--color-backdrop);
+    pointer-events: none;
   }
 
   .modal {
@@ -199,6 +178,7 @@
     padding: var(--s-small-px);
     border-radius: var(--br-medium);
     box-shadow: var(--box-shadow-high);
+    pointer-events: auto;
   }
 
   .primary-image {
