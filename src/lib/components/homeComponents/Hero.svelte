@@ -57,7 +57,7 @@
     height: 100%;
     background-image: url('$lib/assets/img/home/homeCover.jpeg');
     background-size: cover;
-    background-position: center;
+    background-position: top;
     background-color: var(--primary);
     background-blend-mode: multiply;
     opacity: 0.3;

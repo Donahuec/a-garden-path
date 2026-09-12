@@ -5,6 +5,7 @@
   import { fade } from 'svelte/transition';
   const imageModules = import.meta.glob('$lib/assets/img/home/*.jpeg', {
     eager: true,
+    import: 'default',
     query: {
       enhanced: true,
       fit: 'cover'
@@ -17,11 +18,24 @@
   let previous = $derived(displayIndex - 1 >= 0 ? displayIndex - 1 : count - 1);
   let next = $derived(displayIndex + 1 < count ? displayIndex + 1 : 0);
 
+  const right = -1;
+  const left = 1;
+  const vertical = 0;
+  let direction = $state(0);
+
+  $effect(() => {
+    if (displayIndex == -1) {
+      direction = vertical;
+    }
+  });
+
   function displayPrevious() {
+    direction = left;
     displayIndex = previous;
   }
 
   function displayNext() {
+    direction = right;
     displayIndex = next;
   }
 
@@ -36,9 +50,9 @@
   }
 
   function handleKeydown(event) {
-    console.log(`pressed the ${event.key} key`);
     if (displayIndex !== -1) {
       if (event.key === 'Escape') {
+        direction = 0;
         displayIndex = -1;
       } else if (event.key === 'ArrowRight') {
         displayNext();
@@ -74,7 +88,7 @@
         bind:displayIndex
         {displayPrevious}
         {displayNext}
-        {count}
+        {direction}
       />
     {/each}
   </section>

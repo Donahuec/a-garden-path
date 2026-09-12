@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fly } from 'svelte/transition';
   import { trapFocus } from '$lib/attachments/trapFocus.svelte.ts';
+  import ImageButton from '$lib/components/shared/images/ImageButton/ImageButton.svelte';
   let {
     module,
     imageMeta,
@@ -8,7 +9,7 @@
     displayIndex = $bindable(),
     displayPrevious,
     displayNext,
-    count
+    direction = $bindable()
   } = $props();
 
   let alt = $derived(imageMeta.alt || '');
@@ -17,47 +18,21 @@
 
   let open = $derived(index == displayIndex);
 
-  const right = -1;
-  const left = 1;
-  const vertical = 0;
-
-  let direction = $state(0);
-
-  let flyY = $derived(direction === vertical || displayIndex === -1 ? 300 : 0);
+  let flyY = $derived(direction === 0 || displayIndex === -1 ? 300 : 0);
   let flyInX = $derived(displayIndex === -1 ? 0 : 500 * direction);
   let flyOutX = $derived(displayIndex === -1 ? 0 : -500 * direction);
-
-  function next() {
-    direction = right;
-    displayNext();
-  }
-
-  function previous() {
-    direction = left;
-    displayPrevious();
-  }
-
-  $effect(() => {
-    if (index != displayIndex) {
-      if (displayIndex == -1) {
-        direction = vertical;
-      } else if (index === 0 && displayIndex === count - 1) {
-        direction = right;
-      } else if (index === count - 1 && displayIndex === 0) {
-        direction = left;
-      } else {
-        direction = index > displayIndex ? right : left;
-      }
-    }
-  });
 </script>
 
-<button class="gallery-image-button" onclick={() => (displayIndex = index)}>
-  <figure class="gallery-image-figure">
-    <enhanced:img class="gallery-image" src={module.default} {alt} width="250" height="250" />
-    <figcaption class="gallery-image-caption">{title}</figcaption>
-  </figure>
-</button>
+<ImageButton
+  image={module}
+  {title}
+  {alt}
+  size="250"
+  onclick={() => {
+    direction = 0;
+    displayIndex = index;
+  }}
+/>
 
 {#if open}
   <div class="modal-container">
@@ -70,13 +45,13 @@
     >
       <h2 class="primary-image-title font-header">{title}</h2>
       <figure class="primary-image-figure">
-        <enhanced:img class="primary-image" src={module.default} {alt} />
+        <enhanced:img class="primary-image" src={module} {alt} />
         <figcaption class="primary-image-caption">{description}</figcaption>
       </figure>
-      <button class="nav-button prev" onclick={() => previous()} aria-label="Previous">
+      <button class="nav-button prev" onclick={() => displayPrevious()} aria-label="Previous">
         <span class="arrow">&#10218;</span>
       </button>
-      <button class="nav-button next" onclick={() => next()} aria-label="Next">
+      <button class="nav-button next" onclick={() => displayNext()} aria-label="Next">
         <span class="arrow">&#10219;</span>
       </button>
     </article>
@@ -84,81 +59,6 @@
 {/if}
 
 <style>
-  .gallery-image {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    display: block;
-    border-radius: var(--br-medium);
-    will-change: transform;
-    transition: transform 250ms;
-  }
-
-  .gallery-image-button {
-    background-color: var(--color-background);
-    border: none;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    padding: 0;
-    position: relative;
-    isolation: isolate;
-    box-shadow: var(--box-shadow-medium);
-    border-radius: var(--br-medium);
-  }
-
-  .gallery-image-figure::before {
-    content: '';
-    z-index: 1;
-    width: 100%;
-    height: 100%;
-    display: block;
-    position: absolute;
-    background: var(--text-backdrop-gradient);
-  }
-
-  .gallery-image-figure {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    z-index: 0;
-  }
-
-  .gallery-image-caption {
-    position: absolute;
-    bottom: var(--s-xsmall-rem);
-    left: 0;
-    right: 0;
-    text-align: center;
-    z-index: 2;
-    text-transform: capitalize;
-    color: var(--soft-white);
-    transition: transform 250ms;
-    font-size: var(--font-size-body);
-    font-family: var(--font-family-body);
-  }
-
-  .gallery-image-button:focus-visible,
-  .gallery-image-button:hover:not(:active) {
-    .gallery-image {
-      transform: scale(var(--button-scale-up));
-    }
-    .gallery-image-caption {
-      transform: translateY(-3px);
-    }
-  }
-
-  .gallery-image-button:hover {
-    cursor: pointer;
-  }
-
-  .gallery-image-button:focus-visible {
-    outline: 2px dashed var(--secondary);
-    outline-offset: 4px;
-  }
-
   .modal-container {
     position: fixed;
     display: grid;
@@ -210,14 +110,15 @@
     transform: translateY(calc(var(--s-xsmall-px) + 100%));
     padding: 0;
     margin: 0;
+    font-size: 1rem;
   }
 
   .nav-button {
     color: var(--light-shade);
     font-size: var(--s-large-rem);
     line-height: 0;
-    height: var(--s-large-rem);
-    width: var(--s-large-rem);
+    height: var(--s-xlarge-rem);
+    width: var(--s-xlarge-rem);
     position: absolute;
     top: 50%;
     border-radius: 50%;
@@ -225,14 +126,14 @@
       left: 0;
       transform: translateY(-50%) translateX(calc(calc(var(--s-medium-px) + 100%) * -1));
       .arrow {
-        margin-left: -5px;
+        margin-left: calc(-5px + var(--s-medium-rem));
       }
     }
     &.next {
       right: 0;
       transform: translateY(-50%) translateX(calc(var(--s-medium-px) + 100%));
       .arrow {
-        margin-right: -5px;
+        margin-left: calc(-5px + var(--s-medium-rem));
       }
     }
     .arrow {
