@@ -1,6 +1,7 @@
 <script>
   import '$lib/styles/media-queries.css';
   import EnterButton from './EnterButton.svelte';
+
   let { action } = $props();
 </script>
 

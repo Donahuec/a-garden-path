@@ -9,6 +9,7 @@ import autoprefixer from 'autoprefixer';
 import postcssPresetEnv from 'postcss-preset-env';
 import postCssGlobalData from '@csstools/postcss-global-data';
 import adapter from '@sveltejs/adapter-static';
+import { enhancedImages } from '@sveltejs/enhanced-img';
 
 const dirname =
   typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
@@ -16,6 +17,7 @@ const dirname =
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
 export default defineConfig({
   plugins: [
+    enhancedImages(),
     sveltekit({
       compilerOptions: {
         // Force runes mode for the project, except for libraries. Can be removed in svelte 6.

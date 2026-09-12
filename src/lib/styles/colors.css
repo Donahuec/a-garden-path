@@ -6,6 +6,8 @@
   --secondary: hsl(332deg 47% 48%);
   --secondary: hsl(332, 70%, 62%);
   --light-accent: hsl(188deg, 86%, 53%);
+  --soft-white: hsl(200, 4%, 85%);
+  --color-backdrop: hsla(0, 0%, 0%, 0.75);
 
   /* Base Colors */
 

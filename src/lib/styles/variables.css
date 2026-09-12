@@ -1,43 +1,70 @@
 :root {
-	/* Sizing */
-	--s-1-px: 4px;
-	--s-1-rem: 0.25rem;
+  /* Sizing */
+  --s-1-px: 4px;
+  --s-1-rem: 0.25rem;
 
-	--s-2-px: 8px;
-	--s-2-rem: 0.5rem;
-	--s-3-px: 16px;
-	--s-3-rem: 1rem;
-	--s-4-px: 24px;
-	--s-4-rem: 1.5rem;
-	--s-5-px: 32px;
-	--s-5-rem: 2rem;
-	--s-6-px: 48px;
-	--s-6-rem: 3rem;
-	--s-7-px: 64px;
-	--s-7-rem: 4rem;
-	--s-8-px: 96px;
-	--s-8-rem: 6rem;
-	--s-9-px: 128px;
-	--s-9-rem: 8rem;
-	--s-10-px: 256px;
-	--s-10-rem: 16rem;
+  --s-2-px: 8px;
+  --s-2-rem: 0.5rem;
+  --s-3-px: 16px;
+  --s-3-rem: 1rem;
+  --s-4-px: 24px;
+  --s-4-rem: 1.5rem;
+  --s-5-px: 32px;
+  --s-5-rem: 2rem;
+  --s-6-px: 48px;
+  --s-6-rem: 3rem;
+  --s-7-px: 64px;
+  --s-7-rem: 4rem;
+  --s-8-px: 96px;
+  --s-8-rem: 6rem;
+  --s-9-px: 128px;
+  --s-9-rem: 8rem;
+  --s-10-px: 256px;
+  --s-10-rem: 16rem;
 
-	/* Named sizing */
-	--s-xsmall-px: var(--s-2-px);
-	--s-xsmall-rem: var(--s-2-rem);
-	--s-small-px: var(--s-3-px);
-	--s-small-rem: var(--s-3-rem);
-	--s-medium-px: var(--s-5-px);
-	--s-medium-rem: var(--s-5-rem);
-	--s-large-px: var(--s-7-px);
-	--s-large-rem: var(--s-7-rem);
-	--s-xlarge-px: var(--s-9-px);
-	--s-xlarge-rem: var(--s-9-rem);
-	--s-xxlarge-px: var(--s-10-px);
-	--s-xxlarge-rem: var(--s-10-rem);
+  /* Named sizing */
+  --s-xsmall-px: var(--s-2-px);
+  --s-xsmall-rem: var(--s-2-rem);
+  --s-small-px: var(--s-3-px);
+  --s-small-rem: var(--s-3-rem);
+  --s-medium-px: var(--s-5-px);
+  --s-medium-rem: var(--s-5-rem);
+  --s-large-px: var(--s-7-px);
+  --s-large-rem: var(--s-7-rem);
+  --s-xlarge-px: var(--s-9-px);
+  --s-xlarge-rem: var(--s-9-rem);
+  --s-xxlarge-px: var(--s-10-px);
+  --s-xxlarge-rem: var(--s-10-rem);
 
-	/* Border Radius */
-	--br-small: var(--s-1-px);
-	--br-medium: var(--s-2-px);
-	--br-large: var(--s-3-px);
+  /* Border Radius */
+  --br-small: var(--s-1-px);
+  --br-medium: var(--s-2-px);
+  --br-large: var(--s-3-px);
+
+  --animation-time: 250ms;
+
+  --shadow-color: 0deg 0% 0%;
+  --box-shadow-low:
+    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.13),
+    0.5px 1px 1.3px -1px hsl(var(--shadow-color) / 0.15),
+    1.3px 2.5px 3.4px -2px hsl(var(--shadow-color) / 0.17);
+  --box-shadow-medium:
+    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.13),
+    1.1px 2.1px 2.8px -0.7px hsl(var(--shadow-color) / 0.15),
+    2.6px 5.3px 7.1px -1.3px hsl(var(--shadow-color) / 0.16),
+    6.3px 12.5px 16.8px -2px hsl(var(--shadow-color) / 0.18);
+  --box-shadow-high:
+    0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+    1.5px 2.9px 3.7px -0.4px hsl(var(--shadow-color) / 0.34),
+    2.7px 5.4px 6.8px -0.7px hsl(var(--shadow-color) / 0.34),
+    4.5px 8.9px 11.2px -1.1px hsl(var(--shadow-color) / 0.34),
+    7.1px 14.3px 18px -1.4px hsl(var(--shadow-color) / 0.34),
+    11.2px 22.3px 28.1px -1.8px hsl(var(--shadow-color) / 0.34),
+    17px 33.9px 42.7px -2.1px hsl(var(--shadow-color) / 0.34),
+    25px 50px 62.9px -2.5px hsl(var(--shadow-color) / 0.34);
+
+  --text-backdrop-gradient: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 60%);
+
+  --button-scale-up: 1.05;
+  --button-scale-down: 0.95;
 }
