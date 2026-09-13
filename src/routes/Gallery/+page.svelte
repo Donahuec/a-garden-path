@@ -4,7 +4,12 @@
   import '$lib/styles/media-queries.css';
   import { fade } from 'svelte/transition';
   import { setSlideshowContext } from '$lib/contexts/slideshowContext';
-  const imageModules = import.meta.glob('$lib/assets/img/home/*.jpeg', {
+  import type { SlideshowContext } from '$lib/contexts/slideshowContext';
+  import type { Picture } from '@sveltejs/enhanced-img';
+  import { ImageData } from '$lib/models/ImageMetadata';
+  import type { ImageMetadata } from '$lib/models/ImageMetadata';
+
+  const imageModules: Record<string, Picture> = import.meta.glob('$lib/assets/img/home/*.jpeg', {
     eager: true,
     import: 'default',
     query: {
@@ -13,18 +18,28 @@
     }
   });
 
-  let count = Object.entries(imageModules).length;
+  let imageData: Record<number, ImageData> = $state([]);
+
+  Object.entries(imageModules).forEach(([_path, image], index) => {
+    const meta = getImageMeta(_path);
+    if (meta) {
+      imageData[index] = new ImageData(image, meta);
+    }
+  });
+
+  let count = $derived(Object.entries(imageData).length);
 
   let displayContext = $state({
     currentDisplayIndex: -1,
     direction: 0
-  });
+  } as SlideshowContext);
 
-  let displayIndex = $derived(displayContext.currentDisplayIndex);
-
-  //let displayIndex = $state(-1);
-  let previous = $derived(displayIndex - 1 >= 0 ? displayIndex - 1 : count - 1);
-  let next = $derived(displayIndex + 1 < count ? displayIndex + 1 : 0);
+  let previous = $derived(
+    displayContext.currentDisplayIndex - 1 >= 0 ? displayContext.currentDisplayIndex - 1 : count - 1
+  );
+  let next = $derived(
+    displayContext.currentDisplayIndex + 1 < count ? displayContext.currentDisplayIndex + 1 : 0
+  );
 
   const right = -1;
   const left = 1;
@@ -49,8 +64,9 @@
   }
 
   function open(index: number) {
+    console.log(index);
     displayContext.direction = vertical;
-    displayContext.currentDisplayIndex = index;
+    displayContext.currentDisplayIndex = parseInt(index);
   }
   function close() {
     displayContext.direction = vertical;
@@ -63,12 +79,12 @@
     return fileName.split('.')[0];
   }
 
-  function getImageMeta(path: string) {
+  function getImageMeta(path: string): ImageMetadata {
     return images[getImageName(path)];
   }
 
   function handleKeydown(event) {
-    if (displayIndex !== -1) {
+    if (displayContext.currentDisplayIndex !== -1) {
       if (event.key === 'Escape') {
         displayContext.direction = 0;
         displayContext.currentDisplayIndex = -1;
@@ -83,7 +99,7 @@
 
 <svelte:window onkeydown={handleKeydown} />
 <main class="page-container">
-  {#if displayIndex !== -1}
+  {#if displayContext.currentDisplayIndex !== -1}
     <div
       class="modal-backdrop"
       onclick={(event) => {
@@ -97,16 +113,8 @@
   {/if}
   <h1>Images</h1>
   <section id="gallery" class="image-gallery">
-    {#each Object.entries(imageModules) as [_path, image], index (_path)}
-      <GalleryEntry
-        {image}
-        imageMeta={getImageMeta(_path)}
-        {index}
-        {displayPrevious}
-        {displayNext}
-        {open}
-        {close}
-      />
+    {#each Object.entries(imageData) as [index, image] (index)}
+      <GalleryEntry {image} {index} {displayPrevious} {displayNext} {open} {close} />
     {/each}
   </section>
 </main>

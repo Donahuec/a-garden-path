@@ -1,12 +1,10 @@
 <script lang="ts">
   import { fly } from 'svelte/transition';
   import { getSlideshowContext } from '$lib/contexts/slideshowContext';
+  import { ImageData } from '$lib/models/ImageMetadata';
 
   interface Props {
-    image: unknown;
-    title: string;
-    alt: string;
-    description: string;
+    image: ImageData;
     trapFocus: () => void;
     isSlideshow: boolean;
     index?: number;
@@ -17,9 +15,6 @@
 
   let {
     image,
-    title,
-    alt,
-    description,
     trapFocus,
     isSlideshow = true,
     index = 0,
@@ -51,11 +46,11 @@
     }}
   >
     <h2 class="primary-image-title font-header">
-      {title}
+      {image.title}
     </h2>
     <figure class="primary-image-figure">
-      <enhanced:img class="primary-image" src={image} {alt} />
-      <figcaption class="primary-image-caption">{description}</figcaption>
+      <enhanced:img class="primary-image" src={image.image} alt={image.alt} />
+      <figcaption class="primary-image-caption">{image.description}</figcaption>
     </figure>
     {#if isSlideshow}
       <button class="nav-button prev" onclick={() => displayPrevious()} aria-label="Previous">

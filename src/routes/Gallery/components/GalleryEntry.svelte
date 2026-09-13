@@ -4,14 +4,10 @@
   import ImageModal from '$lib/components/shared/images/ImageModal/ImageModal.svelte';
   import { getSlideshowContext } from '$lib/contexts/slideshowContext';
 
-  let { image, imageMeta, index, displayPrevious, displayNext, open, close } = $props();
+  let { image, index, displayPrevious, displayNext, open, close } = $props();
 
   const displayContext = getSlideshowContext();
   let imageButton;
-
-  let alt = $derived(imageMeta.alt || '');
-  let title = $derived(imageMeta.title || 'Untitled');
-  let description = $derived(imageMeta.description || alt);
 
   let opened = $derived(index == displayContext.currentDisplayIndex);
 
@@ -25,9 +21,9 @@
 
 <ImageButton
   bind:this={imageButton}
-  {image}
-  {title}
-  {alt}
+  image={image.image}
+  title={image.title}
+  alt={image.alt}
   size="250"
   onclick={() => {
     open(index);
@@ -37,9 +33,6 @@
 {#if opened}
   <ImageModal
     {image}
-    {title}
-    {alt}
-    {description}
     {index}
     {displayPrevious}
     {displayNext}
