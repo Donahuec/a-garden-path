@@ -12,7 +12,6 @@
     };
   }
 
-  // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
   const { Story } = defineMeta({
     title: 'Images/ImageModal',
     component: ImageModal,
@@ -28,17 +27,28 @@
       index: 1,
       displayPrevious: fn(),
       displayNext: fn(),
-      direction: 0,
       globals: {
-        // 👇 Set background value for all component stories
         backgrounds: { value: 'dark' }
       }
     }
   });
 </script>
 
-<!-- More on writing stories with args: https://storybook.js.org/docs/writing-stories/args -->
+<script>
+  import { setSlideshowContext } from '$lib/contexts/slideshowContext';
+
+  setSlideshowContext({ currentDisplayIndex: 1, direction: 0 });
+</script>
+
 <Story
-  name="Base"
-  args={{ image: image, title: 'Title', alt: 'alt', description: 'This is a description' }}
+  name="Slideshow"
+  args={{
+    isSlideshow: true
+  }}
+/>
+<Story
+  name="Not Slideshow"
+  args={{
+    isSlideshow: false
+  }}
 />

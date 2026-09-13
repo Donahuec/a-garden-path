@@ -8,9 +8,9 @@
     alt: string;
     description: string;
     trapFocus: () => void;
-    close?: () => void;
     isSlideshow: boolean;
     index?: number;
+    close?: () => void;
     displayPrevious?: () => void;
     displayNext?: () => void;
   }
@@ -21,16 +21,18 @@
     alt,
     description,
     trapFocus,
+    isSlideshow = true,
+    index = 0,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     close,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    isSlideshow = true,
-    index,
     displayPrevious,
     displayNext
   }: Props = $props();
 
-  const displayContext = getSlideshowContext();
+  // svelte-ignore state_referenced_locally
+  const displayContext = isSlideshow
+    ? getSlideshowContext()
+    : { currentDisplayIndex: index, direction: 0 };
 </script>
 
 <div class="modal-container">
@@ -49,23 +51,25 @@
     }}
   >
     <h2 class="primary-image-title font-header">
-      {title} - i:{index}, di:{displayContext.currentDisplayIndex}, dir:{displayContext.direction}
+      {title}
     </h2>
     <figure class="primary-image-figure">
       <enhanced:img class="primary-image" src={image} {alt} />
       <figcaption class="primary-image-caption">{description}</figcaption>
     </figure>
-    <button class="nav-button prev" onclick={() => displayPrevious()} aria-label="Previous">
-      <span class="arrow">&#10218;</span>
-    </button>
-    <button
-      id={`next-button-${index}`}
-      class="nav-button next"
-      onclick={() => displayNext()}
-      aria-label="Next"
-    >
-      <span class="arrow">&#10219;</span>
-    </button>
+    {#if isSlideshow}
+      <button class="nav-button prev" onclick={() => displayPrevious()} aria-label="Previous">
+        <span class="arrow">&#10218;</span>
+      </button>
+      <button
+        id={`next-button-${index}`}
+        class="nav-button next"
+        onclick={() => displayNext()}
+        aria-label="Next"
+      >
+        <span class="arrow">&#10219;</span>
+      </button>
+    {/if}
   </article>
 </div>
 
