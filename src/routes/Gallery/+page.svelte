@@ -3,6 +3,7 @@
   import { images } from '$lib/assets/img/home/meta.json';
   import '$lib/styles/media-queries.css';
   import { fade } from 'svelte/transition';
+  import { setSlideshowContext } from '$lib/contexts/slideshowContext';
   const imageModules = import.meta.glob('$lib/assets/img/home/*.jpeg', {
     eager: true,
     import: 'default',
@@ -14,29 +15,46 @@
 
   let count = Object.entries(imageModules).length;
 
-  let displayIndex = $state(-1);
+  let displayContext = $state({
+    currentDisplayIndex: -1,
+    direction: 0
+  });
+
+  let displayIndex = $derived(displayContext.currentDisplayIndex);
+
+  //let displayIndex = $state(-1);
   let previous = $derived(displayIndex - 1 >= 0 ? displayIndex - 1 : count - 1);
   let next = $derived(displayIndex + 1 < count ? displayIndex + 1 : 0);
 
   const right = -1;
   const left = 1;
   const vertical = 0;
-  let direction = $state(0);
+
+  setSlideshowContext(displayContext);
 
   $effect(() => {
-    if (displayIndex == -1) {
-      direction = vertical;
+    if (displayContext.currentDisplayIndex == -1) {
+      displayContext.direction = vertical;
     }
   });
 
   function displayPrevious() {
-    direction = left;
-    displayIndex = previous;
+    displayContext.direction = left;
+    displayContext.currentDisplayIndex = previous;
   }
 
   function displayNext() {
-    direction = right;
-    displayIndex = next;
+    displayContext.direction = right;
+    displayContext.currentDisplayIndex = next;
+  }
+
+  function open(index: number) {
+    displayContext.direction = vertical;
+    displayContext.currentDisplayIndex = index;
+  }
+  function close() {
+    displayContext.direction = vertical;
+    displayContext.currentDisplayIndex = -1;
   }
 
   function getImageName(path: string): string {
@@ -52,8 +70,8 @@
   function handleKeydown(event) {
     if (displayIndex !== -1) {
       if (event.key === 'Escape') {
-        direction = 0;
-        displayIndex = -1;
+        displayContext.direction = 0;
+        displayContext.currentDisplayIndex = -1;
       } else if (event.key === 'ArrowRight') {
         displayNext();
       } else if (event.key === 'ArrowLeft') {
@@ -70,7 +88,7 @@
       class="modal-backdrop"
       onclick={(event) => {
         if (event.target === event.currentTarget) {
-          displayIndex = -1;
+          displayContext.currentDisplayIndex = -1;
         }
       }}
       aria-hidden="true"
@@ -79,15 +97,15 @@
   {/if}
   <h1>Images</h1>
   <section id="gallery" class="image-gallery">
-    {#each Object.entries(imageModules) as [_path, module], index (_path)}
+    {#each Object.entries(imageModules) as [_path, image], index (_path)}
       <GalleryEntry
-        {module}
+        {image}
         imageMeta={getImageMeta(_path)}
         {index}
-        bind:displayIndex
         {displayPrevious}
         {displayNext}
-        {direction}
+        {open}
+        {close}
       />
     {/each}
   </section>
