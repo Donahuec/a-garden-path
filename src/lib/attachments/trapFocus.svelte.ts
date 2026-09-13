@@ -1,6 +1,11 @@
 import { on } from 'svelte/events';
 
-export function trapFocus(node: HTMLElement, initialId?: string, previous?: Element | null) {
+export function trapFocus(
+  node: HTMLElement,
+  initialId?: string,
+  previous?: Element | null,
+  focus?: boolean
+) {
   function focusable(): HTMLElement[] {
     return Array.from(
       node.querySelectorAll(
@@ -41,7 +46,9 @@ export function trapFocus(node: HTMLElement, initialId?: string, previous?: Elem
     initial = focusable()[0];
   }
 
-  (initial as HTMLElement)?.focus();
+  if (focus) {
+    (initial as HTMLElement)?.focus();
+  }
   const off = on(node, 'keydown', handleKeydown);
 
   return () => {

@@ -172,7 +172,7 @@
     transform: translateX(25%);
   }
 
-  .nav-button:focus {
+  .nav-button:focus-visible {
     outline: 2px dashed var(--secondary);
   }
 </style>
