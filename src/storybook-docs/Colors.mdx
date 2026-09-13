@@ -1,0 +1,63 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+ 
+<Meta title="Colors" />
+ 
+<ColorPalette>
+  <ColorItem
+    title="--primary & --primary-text"
+    subtitle="Teal"
+    colors={{ Base: 'hsl(191deg, 100%, 18%)', Text: 'hsl(191deg, 88%, 47%)' }}
+  />
+  <ColorItem
+    title="--secondary & --secondary-text"
+    subtitle="Pink"
+    colors={{ Base: 'hsl(332, 47%, 48%)', Text: 'hsl(332, 70%, 62%)'  }}
+  />
+  <ColorItem
+    title="--light-accent"
+    subtitle="Light Accent"
+    colors={{ LightAccent: 'hsl(188deg, 86%, 53%)' }}
+  />
+  <ColorItem
+    title="--dark-shade"
+    subtitle="Used for backgrounds and surfaces"
+    colors={{ DarkShade: 'hsl(199deg, 100%, 8%)' }}
+  />
+  <ColorItem
+    title="--light-shade"
+    subtitle="Used for text and backgrounds on bright elements"
+    colors={{ LightShade: 'hsl(200deg, 47%, 66%)' }}
+  />
+  <ColorItem
+    title="--soft-white"
+    subtitle="White"
+    colors={{ SoftWhite: 'hsl(200, 4%, 85%)' }}
+  />
+  <ColorItem
+    title="--color-backdrop"
+    subtitle="modal and popover overlay"
+    colors={{ Backdrop: 'hsla(0, 0%, 0%, 0.75)' }}
+  />
+  {/* <ColorItem
+    title="theme.color.positive"
+    subtitle="Green"
+    colors={{
+      Apple: 'rgba(102,191,60,1)',
+      Apple80: 'rgba(102,191,60,.8)',
+      Apple60: 'rgba(102,191,60,.6)',
+      Apple30: 'rgba(102,191,60,.3)',
+    }}
+  />
+  <ColorItem
+    title="gradient"
+    subtitle="Grayscale"
+    colors={{
+      Gradient: 'linear-gradient(to right,white,black)',
+    }}
+  />
+  <ColorItem
+    title="gradient"
+    subtitle="Grayscale"
+    colors={['linear-gradient(65deg,white,black)']}
+  /> */}
+</ColorPalette>

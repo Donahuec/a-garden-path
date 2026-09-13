@@ -12,6 +12,8 @@
     direction = $bindable()
   } = $props();
 
+  let imageButton;
+
   let alt = $derived(imageMeta.alt || '');
   let title = $derived(imageMeta.title || 'Untitled');
   let description = $derived(imageMeta.description || alt);
@@ -21,9 +23,17 @@
   let flyY = $derived(direction === 0 || displayIndex === -1 ? 300 : 0);
   let flyInX = $derived(displayIndex === -1 ? 0 : 500 * direction);
   let flyOutX = $derived(displayIndex === -1 ? 0 : -500 * direction);
+
+  function trapFocusOnModal() {
+    return (node) => {
+      const tf = trapFocus(node, `next-button-${index}`, imageButton);
+      return tf.destroy;
+    };
+  }
 </script>
 
 <ImageButton
+  bind:this={imageButton}
   image={module}
   {title}
   {alt}
@@ -38,8 +48,7 @@
   <div class="modal-container">
     <article
       class="modal"
-      role="presentation"
-      {@attach trapFocus}
+      {@attach trapFocusOnModal()}
       in:fly|global={{ x: flyInX, y: flyY, duration: 500 }}
       out:fly|global={{ x: flyOutX, y: flyY, duration: 500 }}
     >
@@ -51,7 +60,12 @@
       <button class="nav-button prev" onclick={() => displayPrevious()} aria-label="Previous">
         <span class="arrow">&#10218;</span>
       </button>
-      <button class="nav-button next" onclick={() => displayNext()} aria-label="Next">
+      <button
+        id={`next-button-${index}`}
+        class="nav-button next"
+        onclick={() => displayNext()}
+        aria-label="Next"
+      >
         <span class="arrow">&#10219;</span>
       </button>
     </article>

@@ -69,7 +69,6 @@
     <div
       class="modal-backdrop"
       onclick={(event) => {
-        console.log(event);
         if (event.target === event.currentTarget) {
           displayIndex = -1;
         }
