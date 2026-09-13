@@ -20,7 +20,7 @@
     height: var(--image-size, 250px);
     object-fit: cover;
     display: block;
-    border-radius: var(--br-medium);
+    border-radius: var(--border-radius-medium);
     will-change: transform;
     transition: transform 250ms;
     transform: scale(var(--image-scale, 1));
@@ -42,13 +42,13 @@
     padding: 0;
     margin: 0;
     z-index: 0;
-    border-radius: var(--br-medium);
+    border-radius: var(--border-radius-medium);
     overflow: hidden;
   }
 
   .image-caption {
     position: absolute;
-    bottom: var(--s-xsmall-rem);
+    bottom: var(--spacing-small-rem);
     left: 0;
     right: 0;
     text-align: center;

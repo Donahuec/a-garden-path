@@ -1,45 +1,33 @@
 :root {
   /* Sizing */
-  --s-1-px: 4px;
-  --s-1-rem: 0.25rem;
+  --spacing-xsmall: 4;
+  --spacing-small: 8;
+  --spacing-medium: 16;
+  --spacing-medium-large: 24;
+  --spacing-large: 32;
+  --spacing-xlarge: 64;
+  --spacing-xxlarge: 128;
+  --spacing-max: 256;
 
-  --s-2-px: 8px;
-  --s-2-rem: 0.5rem;
-  --s-3-px: 16px;
-  --s-3-rem: 1rem;
-  --s-4-px: 24px;
-  --s-4-rem: 1.5rem;
-  --s-5-px: 32px;
-  --s-5-rem: 2rem;
-  --s-6-px: 48px;
-  --s-6-rem: 3rem;
-  --s-7-px: 64px;
-  --s-7-rem: 4rem;
-  --s-8-px: 96px;
-  --s-8-rem: 6rem;
-  --s-9-px: 128px;
-  --s-9-rem: 8rem;
-  --s-10-px: 256px;
-  --s-10-rem: 16rem;
+  --spacing-xsmall-rem: calc(calc(var(--spacing-xsmall) / 16) * 1rem);
+  --spacing-small-rem: calc(calc(var(--spacing-small) / 16) * 1rem);
+  --spacing-medium-rem: calc(calc(var(--spacing-medium) / 16) * 1rem);
+  --spacing-large-rem: calc(calc(var(--spacing-large) / 16) * 1rem);
+  --spacing-xlarge-rem: calc(calc(var(--spacing-xlarge) / 16) * 1rem);
+  --spacing-xxlarge-rem: calc(calc(var(--spacing-xxlarge) / 16) * 1rem);
+  --spacing-max-rem: calc(calc(var(--spacing-max) / 16) * 1rem);
 
-  /* Named sizing */
-  --s-xsmall-px: var(--s-2-px);
-  --s-xsmall-rem: var(--s-2-rem);
-  --s-small-px: var(--s-3-px);
-  --s-small-rem: var(--s-3-rem);
-  --s-medium-px: var(--s-5-px);
-  --s-medium-rem: var(--s-5-rem);
-  --s-large-px: var(--s-7-px);
-  --s-large-rem: var(--s-7-rem);
-  --s-xlarge-px: var(--s-9-px);
-  --s-xlarge-rem: var(--s-9-rem);
-  --s-xxlarge-px: var(--s-10-px);
-  --s-xxlarge-rem: var(--s-10-rem);
+  --spacing-xsmall-px: calc(var(--spacing-xsmall) * 1px);
+  --spacing-small-px: calc(var(--spacing-small) * 1px);
+  --spacing-medium-px: calc(var(--spacing-medium) * 1px);
+  --spacing-large-px: calc(var(--spacing-large) * 1px);
+  --spacing-xlarge-px: calc(var(--spacing-xlarge) * 1px);
+  --spacing-xxlarge-px: calc(var(--spacing-xxlarge) * 1px);
+  --spacing-max-px: calc(var(--spacing-max) * 1px);
 
   /* Border Radius */
-  --br-small: var(--s-1-px);
-  --br-medium: var(--s-2-px);
-  --br-large: var(--s-3-px);
+  --border-radius-small: var(--spacing-xsmall-px);
+  --border-radius-medium: var(--spacing-small-px);
 
   --animation-time: 250ms;
 

@@ -37,7 +37,7 @@
     display: grid;
     isolation: isolate;
     place-content: center;
-    margin-block-start: var(--s-large-px);
+    margin-block-start: var(--spacing-xlarge-px);
     animation: fade-in 750ms ease backwards;
     animation-delay: var(--animation-delay, 2000ms);
     @media (prefers-reduced-motion: no-preference) {
@@ -54,8 +54,8 @@
   .enter-btn-bg,
   .enter-btn {
     grid-area: 1 / 1;
-    height: var(--s-xlarge-rem);
-    width: var(--s-xlarge-rem);
+    height: var(--spacing-xxlarge-rem);
+    width: var(--spacing-xxlarge-rem);
     border-radius: 50%;
   }
 

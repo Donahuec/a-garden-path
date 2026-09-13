@@ -89,8 +89,8 @@
     position: relative;
     background-color: var(--dark-shade);
     width: fit-content;
-    padding: var(--s-small-px);
-    border-radius: var(--br-medium);
+    padding: var(--spacing-medium-px);
+    border-radius: var(--border-radius-medium);
     box-shadow: var(--box-shadow-high);
     pointer-events: auto;
   }
@@ -101,7 +101,7 @@
     max-width: 70vw;
     max-height: 70vh;
     margin-inline: auto;
-    border-radius: var(--br-medium);
+    border-radius: var(--border-radius-medium);
   }
 
   .primary-image-title {
@@ -112,7 +112,7 @@
     text-align: center;
     line-height: 1;
     padding: 0;
-    transform: translateY(calc(calc(var(--s-xsmall-px) + 100%) * -1));
+    transform: translateY(calc(calc(var(--spacing-small-px) + 100%) * -1));
   }
 
   .primary-image-caption {
@@ -121,7 +121,7 @@
     left: 0;
     right: 0;
     text-align: center;
-    transform: translateY(calc(var(--s-xsmall-px) + 100%));
+    transform: translateY(calc(var(--spacing-small-px) + 100%));
     padding: 0;
     margin: 0;
     font-size: 1rem;
@@ -129,30 +129,30 @@
 
   .nav-button {
     color: var(--light-shade);
-    font-size: var(--s-large-rem);
+    font-size: var(--spacing-xlarge-rem);
     line-height: 0;
-    height: var(--s-xlarge-rem);
-    width: var(--s-xlarge-rem);
+    height: var(--spacing-xxlarge-rem);
+    width: var(--spacing-xxlarge-rem);
     position: absolute;
     top: 50%;
     border-radius: 50%;
     &.prev {
       left: 0;
-      transform: translateY(-50%) translateX(calc(calc(var(--s-medium-px) + 100%) * -1));
+      transform: translateY(-50%) translateX(calc(calc(var(--spacing-large-px) + 100%) * -1));
       .arrow {
-        margin-left: calc(-5px + var(--s-medium-rem));
+        margin-left: calc(-5px + var(--spacing-large-rem));
       }
     }
     &.next {
       right: 0;
-      transform: translateY(-50%) translateX(calc(var(--s-medium-px) + 100%));
+      transform: translateY(-50%) translateX(calc(var(--spacing-large-px) + 100%));
       .arrow {
-        margin-left: calc(-5px + var(--s-medium-rem));
+        margin-left: calc(-5px + var(--spacing-large-rem));
       }
     }
     .arrow {
       display: block;
-      width: var(--s-large-rem);
+      width: var(--spacing-xlarge-rem);
       position: absolute;
       margin-top: -4px;
       top: 50%;
@@ -172,7 +172,7 @@
     transform: translateX(25%);
   }
 
-  .nav-button:focus-visible {
+  .nav-button:focus {
     outline: 2px dashed var(--secondary);
   }
 </style>

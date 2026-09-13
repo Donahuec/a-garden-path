@@ -77,7 +77,7 @@
   .title-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: var(--s-large-px);
+    padding: var(--spacing-xlarge-px);
     height: 100vh;
     align-items: center;
     @media (--media-max-small) {
@@ -89,7 +89,7 @@
   .page-header {
     display: flex;
     flex-direction: column;
-    gap: var(--s-xsmall-rem);
+    gap: var(--spacing-small-rem);
     font-weight: 400;
     align-items: center;
     line-height: 1.5;
@@ -116,10 +116,10 @@
 
     .square {
       background-color: var(--square-color, var(--primary));
-      height: var(--s-small-rem);
-      width: var(--s-large-rem);
+      height: var(--spacing-medium-rem);
+      width: var(--spacing-xlarge-rem);
       @media (--media-max-small) {
-        width: var(--s-medium-rem);
+        width: var(--spacing-large-rem);
       }
     }
   }

@@ -20,7 +20,7 @@
   .image-button {
     width: var(--image-size, 250px);
     height: var(--image-size, 250px);
-    border-radius: var(--br-medium);
+    border-radius: var(--border-radius-medium);
   }
   .image-button:focus-visible,
   .image-button:hover:not(:active) {

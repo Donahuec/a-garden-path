@@ -97,15 +97,15 @@
   .page-container {
     max-width: 80vw;
     margin-inline: auto;
-    margin-block-start: var(--s-large-px);
+    margin-block-start: var(--spacing-xlarge-px);
   }
 
   .image-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, 250px);
     grid-auto-rows: var(250px);
-    gap: var(--s-small-rem);
-    padding-block: var(--s-small-px);
+    gap: var(--spacing-medium-rem);
+    padding-block: var(--spacing-medium-px);
     min-height: var(250px);
   }
 

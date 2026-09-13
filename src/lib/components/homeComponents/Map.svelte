@@ -50,13 +50,13 @@
   .columns {
     width: min(100%, 90vw);
     flex-wrap: wrap;
-    padding: var(--s-large-px);
+    padding: var(--spacing-xlarge-px);
     display: flex;
     justify-content: space-around;
     gap: 1rem;
 
     @media (--media-max-large) {
-      padding: var(--s-medium-px);
+      padding: var(--spacing-large-px);
     }
 
     @media (--media-max-small) {
