@@ -6,8 +6,7 @@
   import { setSlideshowContext } from '$lib/contexts/slideshowContext';
   import type { SlideshowContext } from '$lib/contexts/slideshowContext';
   import type { Picture } from '@sveltejs/enhanced-img';
-  import { ImageData } from '$lib/models/ImageMetadata';
-  import type { ImageMetadata } from '$lib/models/ImageMetadata';
+  import { type ImageMetadata, ImageData } from '$lib/models/imageMetadata';
 
   const imageModules: Record<string, Picture> = import.meta.glob('$lib/assets/img/home/*.jpeg', {
     eager: true,
@@ -29,15 +28,15 @@
 
   let count = $derived(Object.entries(imageData).length);
 
-  let displayContext = $state({
+  let displayContext: SlideshowContext = $state({
     currentDisplayIndex: -1,
     direction: 0
-  } as SlideshowContext);
+  });
 
-  let previous = $derived(
+  let previous: number = $derived(
     displayContext.currentDisplayIndex - 1 >= 0 ? displayContext.currentDisplayIndex - 1 : count - 1
   );
-  let next = $derived(
+  let next: number = $derived(
     displayContext.currentDisplayIndex + 1 < count ? displayContext.currentDisplayIndex + 1 : 0
   );
 
@@ -64,8 +63,8 @@
   }
 
   function open(index: number) {
-    console.log(index);
     displayContext.direction = vertical;
+    //@ts-ignore
     displayContext.currentDisplayIndex = parseInt(index);
   }
   function close() {

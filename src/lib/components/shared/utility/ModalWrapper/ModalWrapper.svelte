@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { getSlideshowContext } from '$lib/contexts/slideshowContext';
   import { fade } from 'svelte/transition';
   let { children } = $props();
+
+  let displayContext = getSlideshowContext();
 </script>
 
 <div

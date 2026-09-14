@@ -1,6 +1,8 @@
 <script lang="ts">
+  import type { Picture } from '@sveltejs/enhanced-img';
+
   interface Props {
-    image: unknown;
+    image: Picture;
     title: string;
     alt: string;
     size: string;

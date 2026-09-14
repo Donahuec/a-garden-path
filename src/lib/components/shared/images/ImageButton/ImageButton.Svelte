@@ -1,8 +1,9 @@
 <script lang="ts">
   import TitledImage from '$lib/components/shared/images/TitledImage/TitledImage.svelte';
+  import type { Picture } from '@sveltejs/enhanced-img';
 
   interface Props {
-    image: unknown;
+    image: Picture;
     title: string;
     alt: string;
     size: string;

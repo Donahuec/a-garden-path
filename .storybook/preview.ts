@@ -8,11 +8,13 @@ import '../src/lib/styles/colors.css';
 import '../src/lib/styles/variables.css';
 import '../src/lib/styles/typography.css';
 import '../src/lib/styles/globals.css';
-import { themes } from 'storybook/theming';
 
 const preview: Preview = {
   tags: ['autodocs'],
   parameters: {
+    options: {
+      storySort: { method: 'alphabetical' }
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -27,6 +29,8 @@ const preview: Preview = {
       test: 'todo'
     },
     docs: {
+      toc: true,
+      codePanel: true,
       theme: siteTheme
     }
   }

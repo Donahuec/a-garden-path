@@ -1,11 +1,11 @@
 <script lang="ts">
   import { fly } from 'svelte/transition';
-  import { getSlideshowContext } from '$lib/contexts/slideshowContext';
-  import { ImageData } from '$lib/models/ImageMetadata';
+  import { getSlideshowContext, type SlideshowContext } from '$lib/contexts/slideshowContext';
+  import { ImageData } from '$lib/models/imageMetadata';
 
   interface Props {
     image: ImageData;
-    trapFocus: () => void;
+    trapFocus: () => any;
     isSlideshow: boolean;
     index?: number;
     close?: () => void;
@@ -25,7 +25,7 @@
   }: Props = $props();
 
   // svelte-ignore state_referenced_locally
-  const displayContext = isSlideshow
+  const displayContext: SlideshowContext = isSlideshow
     ? getSlideshowContext()
     : { currentDisplayIndex: index, direction: 0 };
 </script>
@@ -33,7 +33,6 @@
 <div class="modal-container">
   <article
     class="modal"
-    {@attach trapFocus()}
     in:fly|global={{
       x: displayContext.currentDisplayIndex === -1 ? 0 : 500 * displayContext.direction,
       y: displayContext.direction === 0 || displayContext.currentDisplayIndex === -1 ? 300 : 0,
@@ -44,6 +43,7 @@
       y: displayContext.direction === 0 || displayContext.currentDisplayIndex === -1 ? 300 : 0,
       duration: 500
     }}
+    {@attach trapFocus()}
   >
     <h2 class="primary-image-title font-header">
       {image.title}

@@ -1,20 +1,19 @@
 <script lang="ts">
-  import { trapFocus } from '$lib/attachments/trapFocus.svelte.ts';
+  import { trapFocus } from '$lib/attachments/trapFocus.svelte';
   import ImageButton from '$lib/components/shared/images/ImageButton/ImageButton.svelte';
   import ImageModal from '$lib/components/shared/images/ImageModal/ImageModal.svelte';
-  import { getSlideshowContext } from '$lib/contexts/slideshowContext';
+  import { getSlideshowContext, type SlideshowContext } from '$lib/contexts/slideshowContext';
 
   let { image, index, displayPrevious, displayNext, open, close } = $props();
 
-  const displayContext = getSlideshowContext();
+  const displayContext: SlideshowContext = getSlideshowContext();
   let imageButton;
 
-  let opened = $derived(index == displayContext.currentDisplayIndex);
+  let opened: boolean = $derived(index == displayContext.currentDisplayIndex);
 
   function trapFocusOnModal() {
     return (node) => {
-      const tf = trapFocus(node, `next-button-${index}`, imageButton);
-      return tf.destroy;
+      return trapFocus(node, `next-button-${index}`, imageButton);
     };
   }
 </script>
@@ -37,6 +36,7 @@
     {displayPrevious}
     {displayNext}
     {close}
+    isSlideshow={true}
     trapFocus={trapFocusOnModal}
   />
 {/if}
