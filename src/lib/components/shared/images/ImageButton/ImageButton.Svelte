@@ -3,6 +3,7 @@
   import type { Picture } from '@sveltejs/enhanced-img';
 
   interface Props {
+    id?: string;
     image: Picture;
     title: string;
     alt: string;
@@ -10,17 +11,20 @@
     onclick: () => void;
   }
 
-  let { image, title, alt, size, onclick }: Props = $props();
+  let { id, image, title, alt, size, onclick }: Props = $props();
 </script>
 
-<button class="image-button" {onclick} style:--image-size={`${size}px`}>
+<button class="image-button" {onclick} style:--image-size={size} {id}>
   <TitledImage {image} {title} {alt} {size} />
 </button>
 
 <style>
   .image-button {
-    width: var(--image-size, 250px);
-    height: var(--image-size, 250px);
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: var(--image-size, 250px);
+    max-height: var(--image-size, 250px);
     border-radius: var(--border-radius-medium);
   }
   .image-button:focus-visible,

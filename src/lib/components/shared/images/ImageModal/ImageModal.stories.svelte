@@ -18,7 +18,7 @@
     component: ImageModal,
     tags: ['autodocs'],
     //@ts-ignore
-    decorators: [() => ModalDecorator],
+    decorators: [() => ModalWrapper],
     args: {
       title: 'Title',
       alt: 'Alt Text',
@@ -30,8 +30,13 @@
       displayPrevious: fn(),
       displayNext: fn()
     } as any,
-    globals: {
-      backgrounds: { value: 'dark' }
+    parameters: {
+      docs: {
+        story: {
+          inline: false,
+          iframeHeight: '600px'
+        }
+      }
     }
   });
 
@@ -49,7 +54,7 @@
 
 <script>
   import { setSlideshowContext } from '$lib/contexts/slideshowContext';
-  import ModalDecorator from '$lib/storybook/ModalDecorator.svelte';
+  import ModalWrapper from '../../utility/ModalWrapper/ModalWrapper.svelte';
 
   setSlideshowContext({ currentDisplayIndex: 1, direction: 0 });
 </script>

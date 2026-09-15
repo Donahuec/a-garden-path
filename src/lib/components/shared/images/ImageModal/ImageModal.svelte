@@ -57,7 +57,7 @@
         <span class="arrow">&#10218;</span>
       </button>
       <button
-        id={`next-button-${index}`}
+        id={`image-modal-next-button-${index}`}
         class="nav-button next"
         onclick={() => displayNext()}
         aria-label="Next"

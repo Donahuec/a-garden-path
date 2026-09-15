@@ -12,14 +12,17 @@
 </script>
 
 <figure class="image-figure">
-  <enhanced:img class="image" src={image} {alt} style:--image-size={`${size}px`} />
+  <enhanced:img class="image" src={image} {alt} style:--image-size={size} />
   <figcaption class="image-caption">{title}</figcaption>
 </figure>
 
 <style>
   .image {
-    width: var(--image-size, 250px);
-    height: var(--image-size, 250px);
+    width: 100%;
+    height: 100%;
+    max-width: var(--image-size, 250px);
+    max-height: var(--image-size, 250px);
+    aspect-ratio: 1 / 1;
     object-fit: cover;
     display: block;
     border-radius: var(--border-radius-medium);

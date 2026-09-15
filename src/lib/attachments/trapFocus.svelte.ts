@@ -3,7 +3,7 @@ import { on } from 'svelte/events';
 export function trapFocus(
   node: HTMLElement,
   initialId?: string,
-  previous?: Element | null,
+  previousId?: string,
   focus?: boolean
 ) {
   function focusable(): HTMLElement[] {
@@ -34,11 +34,15 @@ export function trapFocus(
     }
   }
 
-  if (!previous) {
-    previous = document.activeElement;
+  let previous: HTMLElement;
+  let initial: HTMLElement;
+  
+  if (previousId && document.getElementById(previousId)) {
+    previous = document.getElementById(previousId);
+  } else {
+    previous = (document.activeElement as HTMLElement);
   }
 
-  let initial;
 
   if (initialId && document.getElementById(initialId)) {
     initial = document.getElementById(initialId);
@@ -47,12 +51,12 @@ export function trapFocus(
   }
 
   if (focus) {
-    (initial as HTMLElement)?.focus();
+    initial?.focus();
   }
   const off = on(node, 'keydown', handleKeydown);
 
   return () => {
     off();
-    (previous as HTMLElement)?.focus();
+    previous?.focus();
   };
 }
