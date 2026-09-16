@@ -1,33 +1,23 @@
 <script lang="ts">
   import { fly } from 'svelte/transition';
   import { getSlideshowContext, type SlideshowContext } from '$lib/contexts/slideshowContext';
-  import { ImageData } from '$lib/models/imageMetadata';
+  import { ImageData } from '$lib/models/imageMetadata.svelte';
+  import '$lib/styles/media-queries.css';
 
   interface Props {
     image: ImageData;
     trapFocus: () => any;
     isSlideshow: boolean;
     index?: number;
-    close?: () => void;
-    displayPrevious?: () => void;
-    displayNext?: () => void;
   }
 
-  let {
-    image,
-    trapFocus,
-    isSlideshow = true,
-    index = 0,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    close,
-    displayPrevious,
-    displayNext
-  }: Props = $props();
+  let { image, trapFocus, isSlideshow = true, index = 0 }: Props = $props();
 
-  // svelte-ignore state_referenced_locally
-  const displayContext: SlideshowContext = isSlideshow
-    ? getSlideshowContext()
-    : { currentDisplayIndex: index, direction: 0 };
+  const displayContext: SlideshowContext = $derived(
+    isSlideshow
+      ? getSlideshowContext()
+      : { currentDisplayIndex: index, direction: 0, setIndex: (i) => {}, setDirection: (d) => {} }
+  );
 </script>
 
 <div class="modal-container">
@@ -52,19 +42,6 @@
       <enhanced:img class="primary-image" src={image.image} alt={image.alt} />
       <figcaption class="primary-image-caption">{image.description}</figcaption>
     </figure>
-    {#if isSlideshow}
-      <button class="nav-button prev" onclick={() => displayPrevious()} aria-label="Previous">
-        <span class="arrow">&#10218;</span>
-      </button>
-      <button
-        id={`image-modal-next-button-${index}`}
-        class="nav-button next"
-        onclick={() => displayNext()}
-        aria-label="Next"
-      >
-        <span class="arrow">&#10219;</span>
-      </button>
-    {/if}
   </article>
 </div>
 
@@ -77,23 +54,23 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 50;
     pointer-events: none;
   }
 
   .modal {
     position: relative;
-    background-color: var(--dark-shade);
     width: fit-content;
-    padding: var(--spacing-medium-px);
-    border-radius: var(--border-radius-medium);
-    box-shadow: var(--box-shadow-high);
     pointer-events: auto;
   }
 
   .primary-image {
     height: auto;
     width: auto;
+    background-color: var(--dark-shade);
+    padding: var(--spacing-medium-px);
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--box-shadow-high);
     max-width: 70vw;
     max-height: 70vh;
     margin-inline: auto;
@@ -101,74 +78,28 @@
   }
 
   .primary-image-title {
-    position: absolute;
-    top: 0;
+    /* position: absolute; */
+    /* top: 0;
     left: 0;
-    right: 0;
+    right: 0; */
     text-align: center;
     line-height: 1;
     padding: 0;
-    transform: translateY(calc(calc(var(--spacing-small-px) + 100%) * -1));
+    padding-block: var(--spacing-medium-rem);
+    /* transform: translateY(calc(calc(var(--spacing-small-px) + 100%) * -1)); */
   }
 
   .primary-image-caption {
-    position: absolute;
+    /* position: absolute; */
     bottom: 0;
     left: 0;
     right: 0;
     text-align: center;
-    transform: translateY(calc(var(--spacing-small-px) + 100%));
+    /* transform: translateY(calc(var(--spacing-small-px) + 100%)); */
     padding: 0;
+    padding-block: var(--spacing-medium-rem);
     margin: 0;
     font-size: 1rem;
-  }
-
-  .nav-button {
-    color: var(--light-shade);
-    font-size: var(--spacing-xlarge-rem);
-    line-height: 0;
-    height: var(--spacing-xxlarge-rem);
-    width: var(--spacing-xxlarge-rem);
-    position: absolute;
-    top: 50%;
-    border-radius: 50%;
-    &.prev {
-      left: 0;
-      transform: translateY(-50%) translateX(calc(calc(var(--spacing-large-px) + 100%) * -1));
-      .arrow {
-        margin-left: calc(-5px + var(--spacing-large-rem));
-      }
-    }
-    &.next {
-      right: 0;
-      transform: translateY(-50%) translateX(calc(var(--spacing-large-px) + 100%));
-      .arrow {
-        margin-left: calc(-5px + var(--spacing-large-rem));
-      }
-    }
-    .arrow {
-      display: block;
-      width: var(--spacing-xlarge-rem);
-      position: absolute;
-      margin-top: -4px;
-      top: 50%;
-      transition: transform 250ms ease-out;
-    }
-  }
-
-  .nav-button:hover {
-    cursor: pointer;
-  }
-
-  .nav-button.prev:hover:not(:active) .arrow {
-    transform: translateX(-25%);
-  }
-
-  .nav-button.next:hover:not(:active) .arrow {
-    transform: translateX(25%);
-  }
-
-  .nav-button:focus-visible {
-    outline: 2px dashed var(--secondary);
+    max-width: 70vw;
   }
 </style>

@@ -5,7 +5,7 @@
   import image from '$lib/assets/img/home/flowers.jpeg?enhanced&fit=cover';
   import { fn } from 'storybook/test';
   import { trapFocus as tf } from '$lib/attachments/trapFocus.svelte';
-  import { type ImageMetadata, ImageData } from '$lib/models/imageMetadata';
+  import { type ImageMetadata, ImageData } from '$lib/models/imageMetadata.svelte';
 
   function trapFocusOnModal() {
     return (node) => {
@@ -24,11 +24,8 @@
       alt: 'Alt Text',
       description: 'This is a Description',
       trapFocus: trapFocusOnModal,
-      close: fn(),
       isSlideshow: true,
-      index: 1,
-      displayPrevious: fn(),
-      displayNext: fn()
+      index: 1
     } as any,
     parameters: {
       docs: {
@@ -53,10 +50,27 @@
 </script>
 
 <script>
-  import { setSlideshowContext } from '$lib/contexts/slideshowContext';
+  import { setSlideshowContext, type SlideshowContext } from '$lib/contexts/slideshowContext';
   import ModalWrapper from '../../utility/ModalWrapper/ModalWrapper.svelte';
 
-  setSlideshowContext({ currentDisplayIndex: 1, direction: 0 });
+  let currentDisplayIndex: number = $state(-1);
+  let direction: number = $state(0);
+  let displayContext: SlideshowContext = $state({
+    get currentDisplayIndex() {
+      return currentDisplayIndex;
+    },
+    get direction() {
+      return direction;
+    },
+    setIndex: (index) => {
+      currentDisplayIndex = index;
+    },
+    setDirection: (dir) => {
+      direction = dir;
+    }
+  });
+
+  setSlideshowContext(displayContext);
 </script>
 
 <Story

@@ -1,12 +1,12 @@
 <script lang="ts">
-  import GalleryEntry from './components/GalleryEntry.svelte';
-  import { images } from '$lib/assets/img/home/meta.json';
+  import metadata from '$lib/assets/img/home/meta.json';
   import '$lib/styles/media-queries.css';
-  import { fade } from 'svelte/transition';
   import { setSlideshowContext } from '$lib/contexts/slideshowContext';
   import type { SlideshowContext } from '$lib/contexts/slideshowContext';
   import type { Picture } from '@sveltejs/enhanced-img';
-  import { type ImageMetadata, ImageData } from '$lib/models/imageMetadata';
+  import { type ImageMetadataImport, ImageMap } from '$lib/models/imageMetadata.svelte';
+  import { trapFocus } from '$lib/attachments/trapFocus.svelte';
+  import ImageGallery from '$lib/components/shared/images/ImageGallery/ImageGallery.svelte';
 
   const imageModules: Record<string, Picture> = import.meta.glob('$lib/assets/img/home/*.jpeg', {
     eager: true,
@@ -17,27 +17,35 @@
     }
   });
 
-  let imageData: Record<number, ImageData> = $state([]);
+  let imageData: ImageMap = $state(new ImageMap(imageModules, metadata as ImageMetadataImport));
 
-  Object.entries(imageModules).forEach(([_path, image], index) => {
-    const meta = getImageMeta(_path);
-    if (meta) {
-      imageData[index] = new ImageData(image, meta);
+  let currentDisplayIndex: number = $state(-1);
+  let direction: number = $state(0);
+
+  let displayContext: SlideshowContext = $state({
+    get currentDisplayIndex() {
+      return currentDisplayIndex;
+    },
+    get direction() {
+      return direction;
+    },
+    setIndex: (index) => {
+      currentDisplayIndex = index;
+    },
+    setDirection: (dir) => {
+      direction = dir;
     }
   });
 
-  let count = $derived(Object.entries(imageData).length);
-
-  let displayContext: SlideshowContext = $state({
-    currentDisplayIndex: -1,
-    direction: 0
-  });
-
   let previous: number = $derived(
-    displayContext.currentDisplayIndex - 1 >= 0 ? displayContext.currentDisplayIndex - 1 : count - 1
+    displayContext.currentDisplayIndex - 1 >= 0
+      ? displayContext.currentDisplayIndex - 1
+      : imageData.count - 1
   );
   let next: number = $derived(
-    displayContext.currentDisplayIndex + 1 < count ? displayContext.currentDisplayIndex + 1 : 0
+    displayContext.currentDisplayIndex + 1 < imageData.count
+      ? displayContext.currentDisplayIndex + 1
+      : 0
   );
 
   const right = -1;
@@ -64,22 +72,11 @@
 
   function open(index: number) {
     displayContext.direction = vertical;
-    //@ts-ignore
-    displayContext.currentDisplayIndex = parseInt(index);
+    displayContext.currentDisplayIndex = index;
   }
   function close() {
     displayContext.direction = vertical;
     displayContext.currentDisplayIndex = -1;
-  }
-
-  function getImageName(path: string): string {
-    let split = path.split('/');
-    let fileName = split[split.length - 1];
-    return fileName.split('.')[0];
-  }
-
-  function getImageMeta(path: string): ImageMetadata {
-    return images[getImageName(path)];
   }
 
   function handleKeydown(event) {
@@ -94,27 +91,23 @@
       }
     }
   }
+
+  function trapFocusOnModal() {
+    return (node) => {
+      return trapFocus(
+        node,
+        `image-modal-next-button-${displayContext.currentDisplayIndex}`,
+        `image-button-${displayContext.currentDisplayIndex}`
+      );
+    };
+  }
 </script>
 
 <svelte:window onkeydown={handleKeydown} />
 <main class="page-container">
-  {#if displayContext.currentDisplayIndex !== -1}
-    <div
-      class="modal-backdrop"
-      onclick={(event) => {
-        if (event.target === event.currentTarget) {
-          displayContext.currentDisplayIndex = -1;
-        }
-      }}
-      aria-hidden="true"
-      transition:fade={{ duration: 300 }}
-    ></div>
-  {/if}
   <h1>Images</h1>
   <section id="gallery" class="image-gallery">
-    {#each Object.entries(imageData) as [index, image] (index)}
-      <GalleryEntry {image} {index} {displayPrevious} {displayNext} {open} {close} />
-    {/each}
+    <ImageGallery images={imageData} id="image-gallery" />
   </section>
 </main>
 
@@ -123,24 +116,5 @@
     max-width: 80vw;
     margin-inline: auto;
     margin-block-start: var(--spacing-xlarge-px);
-  }
-
-  .image-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 250px);
-    grid-auto-rows: var(250px);
-    gap: var(--spacing-medium-rem);
-    padding-block: var(--spacing-medium-px);
-    min-height: var(250px);
-  }
-
-  .modal-backdrop {
-    position: fixed;
-    z-index: 2;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--color-backdrop);
   }
 </style>

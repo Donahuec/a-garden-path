@@ -38,7 +38,7 @@ export class ImageData {
 }
 
 export class ImageMap {
-  imageData: SvelteMap<number, ImageData> = new SvelteMap<number, ImageData>();
+  imageData: SvelteMap<number, ImageData> = $state(new SvelteMap<number, ImageData>());
   get imageMetadata(): Record<string, ImageMetadata> {
     return this.imageMetadataImport.images;
   }
