@@ -107,14 +107,12 @@
     {displayPrevious}
     {displayNext}
   >
-    {#key displayContext.currentDisplayIndex}
-      <ImageModal
-        image={images.getValue(displayContext.currentDisplayIndex)}
-        index={displayContext.currentDisplayIndex}
-        isSlideshow={true}
-        trapFocus={trapFocusOnModal}
-      />
-    {/key}
+    <ImageModal
+      image={images.getValue(displayContext.currentDisplayIndex)}
+      index={displayContext.currentDisplayIndex}
+      isSlideshow={true}
+      trapFocus={trapFocusOnModal}
+    />
   </SlideshowModalWrapper>
 {/if}
 

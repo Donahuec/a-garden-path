@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { type SlideshowContext, getSlideshowContext } from '$lib/contexts/slideshowContext';
   import ModalWrapper from '../ModalWrapper/ModalWrapper.svelte';
   import { fade } from 'svelte/transition';
 
@@ -18,10 +19,16 @@
     displayNext,
     children
   } = $props();
+
+  const displayContext: SlideshowContext = $state(getSlideshowContext());
 </script>
 
 <ModalWrapper {onclose} {fadeInDuration} {fadeOutDuration}>
-  {@render children()}
+  {#key displayContext.currentDisplayIndex}
+    <div class="modal-container">
+      {@render children()}
+    </div>
+  {/key}
   <button
     class="nav-button prev"
     onclick={() => displayPrevious()}
@@ -44,6 +51,38 @@
 </ModalWrapper>
 
 <style>
+  .modal-container {
+    position: fixed;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    pointer-events: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    overflow: auto;
+    /* 2. Hides scrollbar for Firefox */
+    scrollbar-width: none;
+    /* 3. Hides scrollbar for IE and Old Edge */
+    -ms-overflow-style: none;
+    /* Webkit prefix needed for Safari compatibility */
+    --gradient: linear-gradient(
+      to bottom,
+      black calc(100% - calc(var(--spacing-large-rem) + var(--spacing-xsmall-rem))),
+      transparent 100%
+    );
+    -webkit-mask-image: var(--gradient);
+    mask-image: var(--gradient);
+    @media (--media-max-small) {
+      place-content: start center;
+      bottom: calc(var(--spacing-xlarge-rem) + var(--spacing-medium-rem));
+    }
+  }
   .nav-button {
     --size: calc(var(--spacing-xlarge-rem) + var(--spacing-medium-rem));
     z-index: 100;
