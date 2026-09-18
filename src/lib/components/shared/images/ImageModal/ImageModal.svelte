@@ -6,17 +6,21 @@
 
   interface Props {
     image: ImageData;
-    trapFocus: () => any;
     isSlideshow: boolean;
     index?: number;
   }
 
-  let { image, trapFocus, isSlideshow = true, index = 0 }: Props = $props();
+  let { image, isSlideshow = true, index = 0 }: Props = $props();
 
   const displayContext: SlideshowContext = $derived(
     isSlideshow
       ? getSlideshowContext()
-      : { currentDisplayIndex: index, direction: 0, setIndex: (i) => {}, setDirection: (d) => {} }
+      : {
+          currentDisplayIndex: index,
+          direction: 0,
+          setIndex: (i) => {},
+          setDirection: (d) => {}
+        }
   );
 </script>
 
@@ -32,7 +36,6 @@
     y: displayContext.direction === 0 || displayContext.currentDisplayIndex === -1 ? 300 : 0,
     duration: 500
   }}
-  {@attach trapFocus()}
 >
   <h2 class="primary-image-title font-header">
     {image.title}
@@ -50,6 +53,7 @@
     pointer-events: auto;
     display: grid;
     grid-template-rows: auto auto 1fr;
+    max-height: 100vh;
     @media (--media-max-small) {
       max-width: 90vw;
     }

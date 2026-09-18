@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { trapFocus } from '$lib/attachments/trapFocus.svelte';
   import { getSlideshowContext, type SlideshowContext } from '$lib/contexts/slideshowContext';
   import type { ImageMap } from '$lib/models/imageMetadata.svelte';
   import SlideshowModalWrapper from '../../utility/SlideshowModalWrapper/SlideshowModalWrapper.svelte';
@@ -69,16 +68,6 @@
       }
     }
   }
-
-  // Potential ideas for improvement
-  // Overall it just needs to be simplified, it is overengineered for the current state...
-  // Potentially attach to the wrapper instead?
-  // potentially use 'this' reference to always return to the button that opened the modal
-  function trapFocusOnModal() {
-    return (node) => {
-      return trapFocus(node, `image-modal-next-button-${displayContext.currentDisplayIndex}`);
-    };
-  }
 </script>
 
 <svelte:window onkeydown={handleKeydown} />
@@ -111,7 +100,6 @@
       image={images.getValue(displayContext.currentDisplayIndex)}
       index={displayContext.currentDisplayIndex}
       isSlideshow={true}
-      trapFocus={trapFocusOnModal}
     />
   </SlideshowModalWrapper>
 {/if}

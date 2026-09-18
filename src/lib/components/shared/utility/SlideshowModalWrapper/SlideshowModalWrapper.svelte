@@ -21,23 +21,16 @@
   } = $props();
 
   const displayContext: SlideshowContext = $state(getSlideshowContext());
+
+  let isOpen = $derived(displayContext.currentDisplayIndex != -1);
 </script>
 
-<ModalWrapper {onclose} {fadeInDuration} {fadeOutDuration}>
+<ModalWrapper {isOpen} {onclose} {fadeInDuration} {fadeOutDuration}>
   {#key displayContext.currentDisplayIndex}
     <div class="modal-container">
       {@render children()}
     </div>
   {/key}
-  <button
-    class="nav-button prev"
-    onclick={() => displayPrevious()}
-    aria-label="Previous"
-    in:fade={{ duration: fadeInDuration }}
-    out:fade={{ duration: fadeOutDuration }}
-  >
-    <span class="arrow">&#10218;</span>
-  </button>
   <button
     id={`image-modal-next-button`}
     class="nav-button next"
@@ -47,6 +40,15 @@
     out:fade={{ duration: fadeOutDuration }}
   >
     <span class="arrow">&#10219;</span>
+  </button>
+  <button
+    class="nav-button prev"
+    onclick={() => displayPrevious()}
+    aria-label="Previous"
+    in:fade={{ duration: fadeInDuration }}
+    out:fade={{ duration: fadeOutDuration }}
+  >
+    <span class="arrow">&#10218;</span>
   </button>
 </ModalWrapper>
 

@@ -1,9 +1,21 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
-  let { onclose, fadeInDuration = 400, fadeOutDuration = 250, children } = $props();
+  let { isOpen, onclose, fadeInDuration = 400, fadeOutDuration = 250, children } = $props();
+
+  let open = $derived(isOpen);
+  let dialog: HTMLDialogElement;
+
+  $effect(() => {
+    if (open && !dialog.open) {
+      dialog.showModal();
+    }
+    if (!open && dialog.open) {
+      dialog.close();
+    }
+  });
 </script>
 
-<div class="modal-wrapper">
+<dialog class="modal-wrapper" bind:this={dialog}>
   <div
     class="modal-backdrop"
     onclick={onclose}
@@ -12,7 +24,7 @@
     out:fade={{ duration: fadeOutDuration }}
   ></div>
   {@render children()}
-</div>
+</dialog>
 
 <style>
   .modal-backdrop {
